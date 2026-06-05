@@ -63,6 +63,14 @@
     color:var(--ink2);padding:5px 10px;border-radius:6px;text-decoration:none;transition:.15s;
   }
   .nav-links a:hover{background:var(--panel);color:var(--cyan);text-decoration:none}
+  /* Mobile: keep nav to ONE row so the sticky offsets (progress top:51px, scroll-padding-top:74px) stay correct.
+     Links scroll sideways instead of wrapping the bar taller. */
+  @media(max-width:640px){
+    .nav-in{gap:10px;padding:12px 16px}
+    .nav-links{flex-wrap:nowrap;overflow-x:auto;margin-left:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+    .nav-links::-webkit-scrollbar{display:none}
+    .nav-links a{padding:5px 8px}
+  }
 
   .wrap{max-width:1080px;margin:0 auto;padding:0 22px;position:relative;z-index:1}
 
