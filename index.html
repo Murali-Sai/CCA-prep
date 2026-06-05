@@ -726,7 +726,7 @@
           <span class="domtag t-d4">D4</span><span class="domtag t-d5">D5</span><span class="daychev">▼</span>
         </div>
         <div class="day-b">
-          <div><div class="blk-label">study</div><div class="blk-text">CCA d4.4 + d5.1. Retry fixes <b>format</b> errors, never <b>absent</b> info. Case-facts block at top; lost-in-the-middle; trim verbose tool outputs.</div></div>
+          <div><div class="blk-label">study</div><div class="blk-text">CCA d4.4 + d5.1. Retry fixes <b>format</b> errors, never <b>absent</b> info. Case-facts block at top; lost-in-the-middle; trim verbose tool outputs. Long sessions: <code>/compact</code> to reclaim context, scratchpad files to persist state across resets.</div></div>
           <div><div class="blk-label">build</div><div class="blk-text">Add a retry loop to your extractor: on validation fail, append the specific error and retry. Prove it succeeds for format errors and correctly gives up on missing data.</div></div>
           <div class="ap-tag"><div class="al">RETRY BOUNDARY</div><div class="at">Format/structure error → retry works. Information absent from source → retrying never helps. Recognize the difference.</div></div>
           <div class="res-links">
@@ -744,7 +744,7 @@
           <span class="domtag t-d5">D5</span><span class="daychev">▼</span>
         </div>
         <div class="day-b">
-          <div><div class="blk-label">study</div><div class="blk-text">CCA d5.2–d5.4. Valid escalation: explicit human request, policy gap, capability limit, threshold, repeated failure. <b>Invalid: sentiment, self-confidence.</b> Track accuracy per document type, not aggregate.</div></div>
+          <div><div class="blk-label">study</div><div class="blk-text">CCA d5.2–d5.4. Valid escalation: explicit human request, policy gap, capability limit, threshold, repeated failure. <b>Invalid: sentiment, self-confidence.</b> Track accuracy <b>per document type</b>, not aggregate — a 97% overall score can mask invoices at 70%.</div></div>
           <div><div class="blk-label">build</div><div class="blk-text">Write <code>escalation_decision()</code> with all valid triggers + tests proving sentiment does NOT trigger escalation.</div></div>
           <div class="ap-tag"><div class="al">SAMPLE Q3</div><div class="at">Low first-contact-resolution fix = <b>explicit criteria + few-shot</b>, never sentiment analysis or a self-confidence threshold (poorly calibrated on hard cases).</div></div>
           <div class="res-links">
@@ -863,7 +863,7 @@
           <span class="domtag t-d2">D2</span><span class="daychev">▼</span>
         </div>
         <div class="day-b">
-          <div><div class="blk-label">study</div><div class="blk-text">Built-in tools (Read/Write/Edit/Bash/Grep/Glob). Directed exploration: Grep entry points → Read to trace → never read all files. Granular vs monolithic MCP tools.</div></div>
+          <div><div class="blk-label">study</div><div class="blk-text">Built-in tools (Read/Write/Edit/Bash/Grep/Glob). <code>Write</code> = new/whole file, <code>Edit</code> = targeted; if Edit hits non-unique text, fall back to Read + Write. Never use Bash/<code>cat</code> for file ops. Directed exploration: Grep entry points → Read to trace → never read all files. Granular vs monolithic MCP tools.</div></div>
           <div><div class="blk-label">drill</div><div class="blk-text">Work the Developer Productivity scenario questions in the practice bank with full distractor analysis.</div></div>
           <div class="ap-tag"><div class="al">TESTED DIRECTLY</div><div class="at"><b>Grep</b> searches file <em>contents</em>; <b>Glob</b> matches file <em>paths</em>. Find all callers → Grep. Find all <code>*.test.tsx</code> → Glob.</div></div>
           <div class="res-links">
@@ -978,7 +978,7 @@
           <span class="domtag t-d3">D3</span><span class="daychev">▼</span>
         </div>
         <div class="day-b">
-          <div><div class="blk-label">study</div><div class="blk-text">CCA d3.1–d3.2. Hierarchy: user → project → directory. Commands run in-session; skills with <code>context: fork</code> run isolated. <code>.claude/rules/</code> with glob paths.</div></div>
+          <div><div class="blk-label">study</div><div class="blk-text">CCA d3.1–d3.2. Hierarchy: user → project → directory (more-specific overrides broader). <code>/memory</code> shows which files are loaded. Commands run in-session; skills with <code>context: fork</code> run isolated. <code>.claude/rules/</code> with glob paths.</div></div>
           <div><div class="blk-label">build</div><div class="blk-text">Configure Claude Code for your LangGraph project: project CLAUDE.md, a path-scoped rule for test files, a forked skill for exploration.</div></div>
           <div class="ap-tag"><div class="al">D3 TRAPS</div><div class="at">Personal prefs in project config = wrong. Commands for complex exploration = wrong (use skills). Cross-directory conventions → <code>.claude/rules/</code>, not subdir CLAUDE.md.</div></div>
           <div class="res-links">
@@ -1030,7 +1030,7 @@
           <span class="domtag t-d1">D1</span><span class="domtag t-d5">D5</span><span class="daychev">▼</span>
         </div>
         <div class="day-b">
-          <div><div class="blk-label">day 20 · drill</div><div class="blk-text">Multi-Agent Research (Qs 7–9) + Developer Tools. Error propagation, provenance, parallel execution.</div></div>
+          <div><div class="blk-label">day 20 · drill</div><div class="blk-text">Multi-Agent Research (Qs 7–9) + Developer Tools. Error propagation, parallel execution, and provenance — tag each claim with source + confidence (verified &gt; extracted &gt; inferred &gt; estimated); annotate conflicts rather than silently picking one value.</div></div>
           <div><div class="blk-label">day 21 · drill + synthesize</div><div class="blk-text">CI/CD (Qs 10–12) + Data Extraction. Then compile your one-page anti-pattern cheatsheet (every pattern + its correct alternative).</div></div>
           <div class="build-tag"><div class="bl">DELIVERABLE</div><div class="bt">Personal anti-pattern cheatsheet covering all 5 domains — your exam-day reference.</div></div>
           <div class="res-links">
