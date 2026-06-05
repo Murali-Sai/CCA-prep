@@ -278,7 +278,6 @@
       <a href="#roadmap">roadmap</a>
       <a href="#resources">resources</a>
       <a href="#interview">interview</a>
-      <a href="#deploy">deploy</a>
     </div>
   </div>
 </nav>
@@ -1241,58 +1240,8 @@
     </div>
   </section>
 
-  <!-- DEPLOY -->
-  <section id="deploy"><span class="anchor"></span>
-    <div class="sec-head">
-      <div class="sec-tag">// 05 · deploy to vercel</div>
-      <h2 class="sec-title">Put this hub online in ~3 minutes</h2>
-      <p class="sec-sub">This is a static site — no build step. Pick the easiest path. The whole folder (this <code>index.html</code> + the <code>resources/</code> PDFs + <code>vercel.json</code>) deploys as-is.</p>
-    </div>
-
-    <div class="ph-banner" style="margin-bottom:18px">
-      <h3>Option A — Drag &amp; drop (no account setup, fastest)</h3>
-      <div class="deploy-steps">
-        <div class="dstep"><div class="dn"></div><div class="dc"><h4>Unzip the project</h4><p>Download the bundle I gave you and unzip it. You'll see <code>index.html</code>, a <code>resources/</code> folder, <code>vercel.json</code>, and <code>README.md</code>.</p></div></div>
-        <div class="dstep"><div class="dn"></div><div class="dc"><h4>Go to Vercel</h4><p>Open <a href="https://vercel.com/new" target="_blank" rel="noopener">vercel.com/new</a> and sign in (free — use your GitHub or email).</p></div></div>
-        <div class="dstep"><div class="dn"></div><div class="dc"><h4>Drag the folder in</h4><p>On the import screen, drag your unzipped <b>folder</b> onto the upload area. Vercel auto-detects a static site. Click <b>Deploy</b>. You'll get a live <code>https://your-name.vercel.app</code> URL.</p></div></div>
-      </div>
-    </div>
-
-    <div class="ph-banner" style="margin-bottom:18px">
-      <h3>Option B — GitHub (best for editing later)</h3>
-      <div class="deploy-steps">
-        <div class="dstep"><div class="dn"></div><div class="dc"><h4>Create a repo &amp; push</h4>
-          <pre class="code"><span class="cm"># inside the unzipped folder</span>
-git init
-git add .
-git commit -m "CCA speedrun study hub"
-git branch -M main
-git remote add origin https://github.com/&lt;you&gt;/cca-speedrun.git
-git push -u origin main</pre></div></div>
-        <div class="dstep"><div class="dn"></div><div class="dc"><h4>Import to Vercel</h4><p>At <a href="https://vercel.com/new" target="_blank" rel="noopener">vercel.com/new</a>, pick <b>Import Git Repository</b>, select your repo, framework preset <b>Other</b>, leave build settings empty, and <b>Deploy</b>. Every future <code>git push</code> auto-redeploys.</p></div></div>
-      </div>
-    </div>
-
-    <div class="ph-banner">
-      <h3>Option C — Vercel CLI (one command)</h3>
-      <div class="deploy-steps">
-        <div class="dstep"><div class="dn"></div><div class="dc"><h4>Install &amp; deploy</h4>
-          <pre class="code">npm i -g vercel
-cd cca-speedrun        <span class="cm"># your unzipped folder</span>
-vercel                 <span class="cm"># follow prompts → preview URL</span>
-vercel --prod          <span class="cm"># promote to production</span></pre></div></div>
-      </div>
-    </div>
-
-    <div class="primer-intro" style="margin-top:18px">
-      <b>Note on the bundled PDFs:</b> the Architect's Playbook is ~14&nbsp;MB, which is fine for Vercel. If you'd rather keep the deploy tiny, delete the <code>resources/</code> folder before deploying and just keep the PDFs locally — the rest of the site works unchanged (those two links will simply 404).
-    </div>
-  </section>
-
   <footer>
-    <p>CCA SPEEDRUN · built for Murali · 30-day Claude Certified Architect study hub<br>
-    Sources: CCA Exam Guide &amp; Architect's Playbook (Anthropic) · claudecertifications.com · docs.anthropic.com · modelcontextprotocol.io · foundation courses via <a href="https://github.com/SkalskiP/courses" target="_blank" rel="noopener">SkalskiP/courses</a> (Microsoft · Hugging Face · DAIR.AI · Full Stack Deep Learning · Karpathy) · free community guides &amp; videos<br>
-    Not affiliated with Anthropic. Verify exam details on the official Skilljar page before registering.</p>
+    <p>Built by Murali</p>
   </footer>
 </div>
 
