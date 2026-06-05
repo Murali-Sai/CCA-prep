@@ -402,7 +402,7 @@
         <div class="pb-row"><div class="pb-label lab-ind">In industry</div>
           <div class="pb-text">It's the cheapest, fastest lever to improve an AI feature — no retraining, works across model updates. The first thing any AI engineer reaches for before considering anything heavier.</div></div>
         <div class="pb-row"><div class="pb-label lab-cca">Why it matters for CCA</div>
-          <div class="pb-text">Domain 4 (20%). The tested rules: explicit measurable criteria beat vague ones ("flag functions over 50 lines" &gt; "flag long functions"); <b>2–4 few-shot examples</b> is optimal, never more than 6; and vague instructions like "be thorough" are <em>always</em> the wrong answer.</div></div>
+          <div class="pb-text">Domain 4 (20%). The tested rules: explicit measurable criteria beat vague ones ("flag functions over 50 lines" &gt; "flag long functions"); <b>2–4 few-shot examples</b> is optimal, never more than 6; and vague instructions like "be thorough" are <em>always</em> the wrong answer. Why it matters: high false-positive rates cause <b>alert fatigue</b> — devs start ignoring every flag, so precise criteria protect trust in the accurate ones.</div></div>
         <div class="analogy"><b>Interview soundbite:</b> "Prompt engineering is iterative spec-writing for a probabilistic system — you define success criteria, then tighten the prompt against failures."</div>
         <a class="pb-link" href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview" target="_blank" rel="noopener">Anthropic prompt engineering docs ↗</a>
         <a class="pb-link" href="https://www.promptingguide.ai" target="_blank" rel="noopener">DAIR.AI: the complete Prompt Engineering Guide ↗</a>
@@ -726,7 +726,7 @@
           <span class="domtag t-d4">D4</span><span class="domtag t-d5">D5</span><span class="daychev">▼</span>
         </div>
         <div class="day-b">
-          <div><div class="blk-label">study</div><div class="blk-text">CCA d4.4 + d5.1. Retry fixes <b>format</b> errors, never <b>absent</b> info. Case-facts block at top; lost-in-the-middle; trim verbose tool outputs. Long sessions: <code>/compact</code> to reclaim context, scratchpad files to persist state across resets.</div></div>
+          <div><div class="blk-label">study</div><div class="blk-text">CCA d4.4 + d5.1. Retry fixes <b>format</b> errors, never <b>absent</b> info. Case-facts block at top; lost-in-the-middle; trim verbose tool outputs. Long sessions: <code>/compact</code> to reclaim context, scratchpad files to persist state across resets. On retry, give the <em>specific</em> error ("total $450 ≠ subtotal $500"), never "try again"; track dismissed findings with a <code>detected_pattern</code> field to surface systematic false positives.</div></div>
           <div><div class="blk-label">build</div><div class="blk-text">Add a retry loop to your extractor: on validation fail, append the specific error and retry. Prove it succeeds for format errors and correctly gives up on missing data.</div></div>
           <div class="ap-tag"><div class="al">RETRY BOUNDARY</div><div class="at">Format/structure error → retry works. Information absent from source → retrying never helps. Recognize the difference.</div></div>
           <div class="res-links">
