@@ -656,8 +656,44 @@
     <div class="wphase active" id="w1">
       <div class="ph-banner">
         <h3>Week 1 — Foundations: Prompt Engineering &amp; Context</h3>
-        <p>Domains 4 (20%) + 5 (15%) = 35% of the exam. Get the Anthropic SDK running, master structured output and context patterns. If you're new to AI, read primers 01–04 before Day 1.</p>
-        <div class="ph-meta"><span class="ph-pill">D4 + D5</span><span class="ph-pill">SDK live by Day 2</span><span class="ph-pill">primers 01–07</span></div>
+        <p>Domains 4 (20%) + 5 (15%) = 35% of the exam. Get the Anthropic SDK running, master structured output and context patterns. Brand new to coding/AI? Do <b>Day 0</b> below first (one optional foundations day), then skim primers 01–04.</p>
+        <div class="ph-meta"><span class="ph-pill">D4 + D5</span><span class="ph-pill">Day 0 on-ramp</span><span class="ph-pill">SDK live by Day 2</span><span class="ph-pill">primers 01–07</span></div>
+      </div>
+
+      <div class="day" data-day="0">
+        <div class="day-h" onclick="td(this)">
+          <span style="width:19px;height:19px;border-radius:5px;border:1.5px solid var(--amber);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--amber);font-size:12px;font-weight:900">★</span>
+          <span class="daynum" style="color:var(--amber)">DAY 00</span>
+          <span class="daytitle">Foundations — just enough to start (optional pre-day)</span>
+          <span class="domtag t-op">PREP</span><span class="daychev">▼</span>
+        </div>
+        <div class="day-b">
+          <div style="grid-column:1/-1"><div class="blk-text"><b>New to coding or AI? Spend one day here first.</b> The goal is <em>vocabulary, not mastery</em> — skim each topic just until the words feel familiar, then start Day 1. Don't try to finish these courses; you'll absorb the rest by building. None of this is tested directly, but it makes every domain click.</div></div>
+
+          <div><div class="blk-label">python</div><div class="blk-text">The language every build uses. Just variables, functions, lists/dicts, <code>pip</code> + virtualenv, and calling an API.</div></div>
+          <div><div class="blk-label">apis &amp; backend</div><div class="blk-text">How your code talks to Claude: HTTP requests, JSON, REST verbs. You'll wrap your agent in FastAPI in Week 4.</div></div>
+          <div><div class="blk-label">sql &amp; databases</div><div class="blk-text">Agent tools read/write data. Just <code>SELECT … WHERE … JOIN</code> — enough to reason about a <code>lookup_order</code> tool.</div></div>
+          <div><div class="blk-label">ml basics</div><div class="blk-text">Vocabulary only: training vs inference, features, overfitting, and <em>why models are probabilistic</em>. You won't train anything for CCA.</div></div>
+          <div><div class="blk-label">llm &amp; transformers</div><div class="blk-text">How an LLM turns tokens into next-token predictions, and what "attention" does. Visual — no math needed.</div></div>
+          <div><div class="blk-label">ai system design</div><div class="blk-text">Composing prompts, tools, retrieval &amp; control flow into a reliable system — this <em>is</em> what the CCA exam tests.</div></div>
+          <div><div class="blk-label">eval &amp; observability</div><div class="blk-text">How you know it works in prod: tracing, eval suites, cost/latency metrics (LLMOps — see primer 14).</div></div>
+          <div><div class="blk-label">production ai</div><div class="blk-text">The goal isn't a demo chatbot — it's a reliable, scalable product. You'll ship one by Day 25.</div></div>
+
+          <div class="ap-tag"><div class="al">how to use today</div><div class="at">Pick the <b>2–3 topics least familiar to you</b> and skim only those. Already a developer? Jump to <b>LLM &amp; transformers</b> + <b>AI system design</b>, then go straight to Day 1.</div></div>
+
+          <div class="res-links">
+            <a class="res-chip" href="https://www.py4e.com/" target="_blank" rel="noopener"><span class="ic">🐍</span> Python for Everybody</a>
+            <a class="res-chip" href="https://fastapi.tiangolo.com/tutorial/first-steps/" target="_blank" rel="noopener"><span class="ic">⚙️</span> FastAPI: first steps</a>
+            <a class="res-chip" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview" target="_blank" rel="noopener"><span class="ic">🌐</span> MDN: how HTTP works</a>
+            <a class="res-chip" href="https://sqlbolt.com/" target="_blank" rel="noopener"><span class="ic">🗄️</span> SQLBolt (interactive SQL)</a>
+            <a class="res-chip" href="https://developers.google.com/machine-learning/crash-course" target="_blank" rel="noopener"><span class="ic">🤖</span> Google ML Crash Course</a>
+            <a class="res-chip" href="https://www.youtube.com/watch?v=wjZofJX0v4M" target="_blank" rel="noopener"><span class="ic">🎥</span> 3Blue1Brown: Transformers</a>
+            <a class="res-chip" href="https://huggingface.co/learn/llm-course/chapter1/1" target="_blank" rel="noopener"><span class="ic">🤗</span> HF LLM Course</a>
+            <a class="res-chip" href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener"><span class="ic">🏗️</span> Anthropic: AI system design</a>
+            <a class="res-chip" href="https://langfuse.com/docs" target="_blank" rel="noopener"><span class="ic">📈</span> Langfuse: LLM observability</a>
+            <a class="res-chip" href="https://fullstackdeeplearning.com/llm-bootcamp/" target="_blank" rel="noopener"><span class="ic">🎬</span> Full Stack LLM Bootcamp</a>
+          </div>
+        </div>
       </div>
 
       <div class="day" data-day="1">
