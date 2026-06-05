@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CCA Speedrun — 30-Day Claude Certified Architect Study Hub</title>
+<meta name="description" content="A 30-day, beginner-friendly study hub for the Anthropic Claude Certified Architect (Foundations) exam. Concept primers, daily roadmap, build projects, and every free resource linked." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Archivo:wght@400;500;700;900&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0a0e14;
+    --bg2:#0e141f;
+    --panel:#111927;
+    --panel2:#0c121d;
+    --line:#1c2940;
+    --line2:#27384f;
+    --ink:#e8eef6;
+    --ink2:#9fb0c5;
+    --dim:#5d6f86;
+    --cyan:#42e8e0;
+    --amber:#ffb347;
+    --violet:#b794f6;
+    --green:#5ce39a;
+    --rose:#ff7a8a;
+    --blue:#5aa9ff;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:74px}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Archivo',system-ui,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  body::before{
+    content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+    background-image:linear-gradient(rgba(66,232,224,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(66,232,224,.025) 1px,transparent 1px);
+    background-size:44px 44px;
+    mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000 30%,transparent 100%);
+  }
+  .mono{font-family:'IBM Plex Mono',monospace}
+  a{color:var(--cyan);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(10,14,20,.82);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-in{max-width:1080px;margin:0 auto;padding:12px 22px;display:flex;align-items:center;gap:18px}
+  .brand{font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;letter-spacing:1px;color:var(--ink);white-space:nowrap}
+  .brand b{color:var(--cyan)}
+  .nav-links{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
+  .nav-links a{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.5px;
+    color:var(--ink2);padding:5px 10px;border-radius:6px;text-decoration:none;transition:.15s;
+  }
+  .nav-links a:hover{background:var(--panel);color:var(--cyan);text-decoration:none}
+
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px;position:relative;z-index:1}
+
+  /* HERO */
+  .hero{padding:70px 0 40px;position:relative}
+  .kicker{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;
+    color:var(--cyan);border:1px solid rgba(66,232,224,.3);background:rgba(66,232,224,.05);
+    padding:6px 14px;border-radius:100px;margin-bottom:24px;
+  }
+  .kicker .dotpulse{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan);animation:pulse 1.8s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+  h1.title{
+    font-family:'Fraunces',serif;font-weight:900;
+    font-size:clamp(2.6rem,7vw,5rem);line-height:.98;letter-spacing:-2px;margin-bottom:20px;
+  }
+  h1.title .l2{color:var(--cyan);font-style:italic}
+  .lede{font-size:clamp(1rem,2vw,1.18rem);color:var(--ink2);max-width:660px;margin-bottom:30px}
+  .lede b{color:var(--ink);font-weight:500}
+  .hero-stats{display:flex;gap:26px;flex-wrap:wrap;margin-bottom:34px}
+  .stat .n{font-family:'Fraunces',serif;font-weight:900;font-size:2rem;color:var(--ink);line-height:1}
+  .stat .k{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:1px;text-transform:uppercase;color:var(--dim);margin-top:5px}
+  .cta-row{display:flex;gap:12px;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;font-weight:500;
+    padding:11px 20px;border-radius:8px;cursor:pointer;transition:.18s;text-decoration:none;border:1px solid transparent;
+  }
+  .btn-primary{background:var(--cyan);color:#04201f;font-weight:600}
+  .btn-primary:hover{box-shadow:0 0 24px rgba(66,232,224,.4);text-decoration:none}
+  .btn-ghost{border-color:var(--line2);color:var(--ink);background:var(--panel2)}
+  .btn-ghost:hover{border-color:var(--cyan);color:var(--cyan);text-decoration:none}
+
+  /* SECTION */
+  section{padding:54px 0;border-top:1px solid var(--line);position:relative}
+  .sec-head{margin-bottom:30px}
+  .sec-tag{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);margin-bottom:10px}
+  h2.sec-title{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(1.7rem,4vw,2.5rem);letter-spacing:-1px;line-height:1.05;margin-bottom:12px}
+  .sec-sub{color:var(--ink2);max-width:680px;font-size:15px}
+
+  /* PROGRESS BAR */
+  .progress-shell{position:sticky;top:51px;z-index:40;background:rgba(10,14,20,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:9px 0}
+  .progress-in{max-width:1080px;margin:0 auto;padding:0 22px;display:flex;align-items:center;gap:14px}
+  .pbar{flex:1;height:6px;background:var(--panel);border-radius:100px;overflow:hidden;border:1px solid var(--line)}
+  .pfill{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--green));border-radius:100px;transition:width .4s ease}
+  .ptext{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink2);white-space:nowrap}
+  .ptext b{color:var(--cyan)}
+  .preset{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);cursor:pointer;border:1px solid var(--line2);padding:3px 9px;border-radius:6px;background:transparent}
+  .preset:hover{color:var(--rose);border-color:var(--rose)}
+
+  /* HOW TO USE */
+  .howto-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:760px){.howto-grid{grid-template-columns:1fr}}
+  .howto{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px}
+  .howto .hr-time{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--amber);letter-spacing:1px;margin-bottom:8px}
+  .howto h4{font-family:'Archivo';font-size:16px;font-weight:700;margin-bottom:7px}
+  .howto p{font-size:13.5px;color:var(--ink2)}
+
+  /* PRIMERS */
+  .primer-intro{background:linear-gradient(135deg,rgba(90,169,255,.08),rgba(66,232,224,.03));border:1px solid var(--line2);border-radius:12px;padding:18px 22px;margin-bottom:24px;font-size:14.5px;color:var(--ink2)}
+  .primer-intro b{color:var(--ink)}
+  .primer{border:1px solid var(--line);border-radius:11px;margin-bottom:10px;overflow:hidden;background:var(--panel2)}
+  .primer-h{display:flex;align-items:center;gap:14px;padding:15px 18px;cursor:pointer;user-select:none}
+  .primer-h:hover{background:var(--panel)}
+  .pnum{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;color:var(--cyan);min-width:30px}
+  .ptitle{flex:1;font-weight:700;font-size:15.5px}
+  .pwhat{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--dim);letter-spacing:.5px;display:none}
+  @media(min-width:680px){.pwhat{display:block;max-width:260px;text-align:right}}
+  .pchev{color:var(--dim);font-size:12px;transition:transform .2s}
+  .primer.open .pchev{transform:rotate(180deg)}
+  .primer-b{display:none;padding:4px 18px 20px;border-top:1px solid var(--line)}
+  .primer.open .primer-b{display:block}
+  .pb-row{margin-top:14px}
+  .pb-label{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px;display:flex;align-items:center;gap:7px}
+  .pb-label::before{content:'';width:14px;height:1.5px;background:currentColor}
+  .lab-eli{color:var(--cyan)} .lab-ind{color:var(--amber)} .lab-cca{color:var(--violet)}
+  .pb-text{font-size:14px;color:var(--ink);line-height:1.65}
+  .pb-text code{font-family:'IBM Plex Mono',monospace;font-size:12.5px;background:rgba(66,232,224,.1);color:var(--cyan);padding:1px 6px;border-radius:4px}
+  .pb-link{display:inline-flex;align-items:center;gap:6px;margin-top:13px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--cyan);border:1px solid var(--line2);padding:6px 12px;border-radius:7px}
+  .pb-link:hover{border-color:var(--cyan);text-decoration:none;background:rgba(66,232,224,.06)}
+  .analogy{background:rgba(255,179,71,.07);border-left:2px solid var(--amber);padding:9px 13px;border-radius:0 8px 8px 0;margin-top:12px;font-size:13.5px;color:var(--ink2)}
+  .analogy b{color:var(--amber);font-weight:600}
+
+  /* WEEK TABS */
+  .wtabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:22px}
+  .wtab{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;padding:9px 16px;border-radius:8px;cursor:pointer;background:var(--panel2);border:1px solid var(--line);color:var(--ink2);transition:.15s}
+  .wtab.active{background:var(--cyan);color:#04201f;border-color:var(--cyan);font-weight:600}
+  .wtab:hover:not(.active){border-color:var(--line2);color:var(--ink)}
+  .wphase{display:none}
+  .wphase.active{display:block;animation:fade .3s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  .ph-banner{border-radius:12px;padding:20px 22px;margin-bottom:18px;border:1px solid var(--line2);background:linear-gradient(135deg,rgba(66,232,224,.07),transparent)}
+  .ph-banner h3{font-family:'Fraunces',serif;font-size:1.35rem;font-weight:600;margin-bottom:6px}
+  .ph-banner p{font-size:14px;color:var(--ink2);max-width:720px}
+  .ph-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .ph-pill{font-family:'IBM Plex Mono',monospace;font-size:10px;padding:4px 10px;border-radius:6px;background:var(--panel);border:1px solid var(--line);color:var(--ink2)}
+
+  /* DAY CARDS */
+  .day{border:1px solid var(--line);border-radius:11px;margin-bottom:9px;overflow:hidden;background:var(--panel2)}
+  .day-h{display:flex;align-items:center;gap:12px;padding:13px 16px;cursor:pointer;user-select:none}
+  .day-h:hover{background:var(--panel)}
+  .daycheck{width:19px;height:19px;border-radius:5px;border:1.5px solid var(--line2);flex-shrink:0;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.15s;background:transparent}
+  .daycheck.done{background:var(--green);border-color:var(--green)}
+  .daycheck.done::after{content:'✓';color:#06251a;font-size:13px;font-weight:900}
+  .daynum{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:var(--dim);min-width:54px}
+  .daytitle{flex:1;font-weight:600;font-size:14.5px}
+  .domtag{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;padding:2px 7px;border-radius:5px;white-space:nowrap}
+  .t-d1{background:rgba(66,232,224,.13);color:var(--cyan)}
+  .t-d2{background:rgba(255,179,71,.13);color:var(--amber)}
+  .t-d3{background:rgba(183,148,246,.14);color:var(--violet)}
+  .t-d4{background:rgba(92,227,154,.13);color:var(--green)}
+  .t-d5{background:rgba(255,122,138,.13);color:var(--rose)}
+  .t-op{background:rgba(90,169,255,.13);color:var(--blue)}
+  .daychev{color:var(--dim);font-size:11px;transition:transform .2s}
+  .day.open .daychev{transform:rotate(180deg)}
+  .day-b{display:none;padding:6px 16px 17px;border-top:1px solid var(--line)}
+  .day.open .day-b{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:700px){.day.open .day-b{grid-template-columns:1fr}}
+  .blk-label{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);margin:13px 0 6px;display:flex;align-items:center;gap:7px}
+  .blk-label::after{content:'';flex:1;height:1px;background:var(--line)}
+  .blk-text{font-size:13.5px;color:var(--ink);line-height:1.6}
+  .blk-text code{font-family:'IBM Plex Mono',monospace;font-size:12px;background:rgba(66,232,224,.1);color:var(--cyan);padding:1px 5px;border-radius:4px}
+  .blk-text ul{margin:4px 0 0 16px}
+  .blk-text li{margin-bottom:3px}
+  .res-links{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;grid-column:1/-1}
+  .res-chip{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--ink2);border:1px solid var(--line2);padding:5px 10px;border-radius:7px;display:inline-flex;align-items:center;gap:6px;background:var(--panel)}
+  .res-chip:hover{border-color:var(--cyan);color:var(--cyan);text-decoration:none}
+  .res-chip .ic{opacity:.7}
+  .build-tag{grid-column:1/-1;background:rgba(92,227,154,.06);border:1px solid rgba(92,227,154,.22);border-radius:8px;padding:10px 13px;margin-top:8px}
+  .build-tag .bl{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:1.5px;color:var(--green);margin-bottom:4px}
+  .build-tag .bt{font-size:13px;color:var(--ink)}
+  .ap-tag{grid-column:1/-1;background:rgba(255,122,138,.05);border:1px solid rgba(255,122,138,.2);border-radius:8px;padding:10px 13px;margin-top:8px}
+  .ap-tag .al{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:1.5px;color:var(--rose);margin-bottom:4px}
+  .ap-tag .at{font-size:13px;color:var(--ink)}
+  .ap-tag b{color:var(--rose)}
+
+  /* RESOURCE LIBRARY */
+  .rescat{margin-bottom:26px}
+  .rescat h4{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--amber);margin-bottom:12px;display:flex;align-items:center;gap:9px}
+  .rescat h4::after{content:'';flex:1;height:1px;background:var(--line)}
+  .resgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+  @media(max-width:700px){.resgrid{grid-template-columns:1fr}}
+  .rescard{display:flex;gap:12px;align-items:flex-start;padding:13px 15px;border:1px solid var(--line);border-radius:10px;background:var(--panel2);transition:.15s}
+  .rescard:hover{border-color:var(--line2);text-decoration:none;background:var(--panel)}
+  .rescard .ric{font-size:17px;flex-shrink:0;line-height:1.3}
+  .rescard .rcc{min-width:0}
+  .rescard .rt{font-weight:600;font-size:13.5px;color:var(--ink);margin-bottom:2px}
+  .rescard .rd{font-size:12px;color:var(--ink2);line-height:1.45}
+  .rescard .ru{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);margin-top:4px;word-break:break-all}
+  .free-badge{font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:.5px;color:var(--green);border:1px solid rgba(92,227,154,.3);padding:1px 6px;border-radius:100px;margin-left:6px;vertical-align:middle}
+
+  /* INTERVIEW */
+  .iv-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  @media(max-width:700px){.iv-grid{grid-template-columns:1fr}}
+  .iv-card{border:1px solid var(--line);border-radius:11px;padding:17px 19px;background:var(--panel2)}
+  .iv-q{font-family:'Fraunces',serif;font-size:16px;font-weight:600;color:var(--ink);margin-bottom:8px;font-style:italic}
+  .iv-a{font-size:13.5px;color:var(--ink2)}
+  .iv-a b{color:var(--cyan);font-weight:500}
+
+  /* DEPLOY */
+  .deploy-steps{counter-reset:step}
+  .dstep{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .dstep:last-child{border-bottom:none}
+  .dstep .dn{counter-increment:step;flex-shrink:0;width:30px;height:30px;border-radius:8px;background:var(--panel);border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-weight:600;color:var(--cyan)}
+  .dstep .dn::before{content:counter(step)}
+  .dstep .dc{flex:1}
+  .dstep h4{font-size:15px;font-weight:700;margin-bottom:5px}
+  .dstep p{font-size:13.5px;color:var(--ink2)}
+  pre.code{background:#070b11;border:1px solid var(--line);border-radius:9px;padding:13px 15px;overflow-x:auto;margin-top:9px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--green);line-height:1.7}
+  pre.code .cm{color:var(--dim)}
+
+  footer{padding:40px 0 60px;border-top:1px solid var(--line);text-align:center}
+  footer p{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--dim);line-height:1.9}
+
+  .anchor{position:relative;top:-70px;visibility:hidden}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-in">
+    <span class="brand">◆ CCA<b>_SPEEDRUN</b></span>
+    <div class="nav-links">
+      <a href="#start">start</a>
+      <a href="#primers">primers</a>
+      <a href="#roadmap">roadmap</a>
+      <a href="#resources">resources</a>
+      <a href="#interview">interview</a>
+      <a href="#deploy">deploy</a>
+    </div>
+  </div>
+</nav>
+
+<!-- PROGRESS -->
+<div class="progress-shell">
+  <div class="progress-in">
+    <span class="ptext">PROGRESS <b id="pcount">0/30</b></span>
+    <div class="pbar"><div class="pfill" id="pfill"></div></div>
+    <button class="preset" onclick="resetProgress()">reset</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="kicker"><span class="dotpulse"></span> 30-DAY SPEEDRUN · ZERO-TO-CERTIFIED</div>
+    <h1 class="title">Claude Certified<br><span class="l2">Architect</span> in 30 days.</h1>
+    <p class="lede">A complete, beginner-friendly study hub for the Anthropic <b>Claude Certified Architect — Foundations</b> exam. Every core AI concept explained from scratch, a day-by-day roadmap that pairs studying with building, and <b>every free resource linked</b> so you never have to search. Goal: be <b>interview-ready</b> and <b>pass the exam</b> — efficiently, not exhaustively.</p>
+    <div class="hero-stats">
+      <div class="stat"><div class="n">30</div><div class="k">days · 3 hrs/day</div></div>
+      <div class="stat"><div class="n">5</div><div class="k">exam domains</div></div>
+      <div class="stat"><div class="n">16</div><div class="k">concept primers</div></div>
+      <div class="stat"><div class="n">720</div><div class="k">score to pass /1000</div></div>
+    </div>
+    <div class="cta-row">
+      <a href="#start" class="btn btn-primary">▸ How to use this hub</a>
+      <a href="#primers" class="btn btn-ghost">New to AI? Start with primers</a>
+    </div>
+  </header>
+
+  <!-- START / HOW TO USE -->
+  <section id="start"><span class="anchor"></span>
+    <div class="sec-head">
+      <div class="sec-tag">// 00 · how to use</div>
+      <h2 class="sec-title">The daily rhythm: study → build → drill</h2>
+      <p class="sec-sub">Three hours a day, split into three blocks. The exam tests <em>production judgment</em>, not memorization — so you study the concept, build a tiny version of it, then drill exam-style questions on it. That triple loop is what makes it stick.</p>
+    </div>
+    <div class="howto-grid">
+      <div class="howto">
+        <div class="hr-time">HOUR 1 — STUDY</div>
+        <h4>Read &amp; understand</h4>
+        <p>Read the linked resource for the day plus the matching section of your two PDFs (Exam Guide + Playbook). Take notes in your own words. If a core AI term is unfamiliar, jump to the <a href="#primers">Primers</a> first.</p>
+      </div>
+      <div class="howto">
+        <div class="hr-time">HOUR 2 — BUILD</div>
+        <h4>Make a tiny version</h4>
+        <p>Code the day's mini-project. No copy-paste — type it, break it, fix it. Reuse your existing projects (your RAG system, your agent) instead of starting from zero. Push to GitHub daily.</p>
+      </div>
+      <div class="howto">
+        <div class="hr-time">HOUR 3 — DRILL</div>
+        <h4>Test yourself</h4>
+        <p>Do 5–10 exam-style questions on the day's topic (use the <a href="https://claudecertifications.com/claude-certified-architect/practice-questions" target="_blank" rel="noopener">free practice bank ↗</a>). For every wrong answer, write down <em>why</em> the right answer wins. Tick the day complete →</p>
+      </div>
+    </div>
+    <div class="primer-intro" style="margin-top:18px">
+      <b>Your north-star heuristic for the whole exam:</b> when two answers both look right, pick the one that is <b>explicit, programmatic, and scoped</b> over the one that is implicit, probabilistic, and broad. Hooks beat prompts. Structured errors beat generic ones. Explicit criteria beat "be thorough." This single idea answers ~80% of CCA questions.
+    </div>
+  </section>
+
+  <!-- PRIMERS -->
+  <section id="primers"><span class="anchor"></span>
+    <div class="sec-head">
+      <div class="sec-tag">// 01 · concept primers</div>
+      <h2 class="sec-title">Core AI concepts, from scratch</h2>
+      <p class="sec-sub">Assume you know nothing. Each card gives you the plain-English idea, how it's actually used in industry, and why it matters for the exam &amp; interviews. Read these first if any term in the roadmap is unfamiliar.</p>
+    </div>
+    <div class="primer-intro">
+      Tap any card to expand. The order builds up: <b>language models → tokens → prompting → embeddings → vector DBs → RAG → tools → MCP → agents → multi-agent → hooks → Claude Code → LLMOps.</b> By the end you'll be able to hold a real conversation about any of them.
+    </div>
+    <div class="primer-intro" style="border-color:rgba(92,227,154,.4);background:linear-gradient(135deg,rgba(92,227,154,.08),rgba(66,232,224,.03))">
+      <b>🌱 Brand new to AI? Start here first (optional, ~2–3 hrs).</b> You do <em>not</em> need to know any of this yet — and you don't have to finish either course. Skim Microsoft's <a href="https://github.com/microsoft/generative-ai-for-beginners" target="_blank" rel="noopener">Generative AI for Beginners</a> (lessons 1–5, ~90 min) for the big picture, and chapter 1 of the <a href="https://huggingface.co/learn/llm-course/chapter1/1" target="_blank" rel="noopener">Hugging Face LLM Course</a> for how a model actually reads text. The primers below then give you the <b>exam-ready</b> version of each idea — including <b>what it is and how industry uses it</b>. All of these also live in the <a href="#resources">resource library</a> so you never have to search.
+    </div>
+
+    <!-- 1 LLM -->
+    <div class="primer" id="pr1">
+      <div class="primer-h" onclick="tp('pr1')">
+        <span class="pnum">01</span><span class="ptitle">Large Language Model (LLM)</span>
+        <span class="pwhat">the engine everything sits on</span><span class="pchev">▼</span>
+      </div>
+      <div class="primer-b">
+        <div class="pb-row"><div class="pb-label lab-eli">In plain English</div>
+          <div class="pb-text">A model trained on enormous amounts of text to do one deceptively simple thing: predict the next chunk of text (a "token") given everything before it. Do that well enough, billions of times, and you get something that can write, summarize, answer questions, and reason. Claude, GPT, and Gemini are all LLMs.</div></div>
+        <div class="pb-row"><div class="pb-label lab-ind">In industry</div>
+          <div class="pb-text">LLMs power chatbots, coding copilots, search, document summarization, and customer support. Companies rarely train their own — they call a provider's model (like Claude) through an API and build <em>around</em> it.</div></div>
+        <div class="pb-row"><div class="pb-label lab-cca">Why it matters for CCA</div>
+          <div class="pb-text">The exam assumes you understand two consequences: an LLM is <b>probabilistic</b> (the same prompt can give different answers — so prompts can't <em>guarantee</em> behavior), and it has a fixed <b>knowledge cutoff</b> and a finite <b>context window</b>. Almost every exam pattern flows from these facts.</div></div>
+        <div class="analogy"><b>Analogy:</b> a brilliant new hire with no memory between conversations and no access to your files — until you give them context and tools.</div>
+        <a class="pb-link" href="https://www.anthropic.com/news/claude-3-5-sonnet" target="_blank" rel="noopener">Anthropic: how Claude models work ↗</a>
+        <a class="pb-link" href="https://github.com/microsoft/generative-ai-for-beginners" target="_blank" rel="noopener">New to AI? MS GenAI for Beginners ↗</a>
+        <a class="pb-link" href="https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ" target="_blank" rel="noopener">Karpathy: build a GPT from scratch (video) ↗</a>
+      </div>
+    </div>
+
+    <!-- 2 Tokens -->
+    <div class="primer" id="pr2">
+      <div class="primer-h" onclick="tp('pr2')">
+        <span class="pnum">02</span><span class="ptitle">Tokens &amp; the Context Window</span>
+        <span class="pwhat">the model's working memory</span><span class="pchev">▼</span>
+      </div>
+      <div class="primer-b">
+        <div class="pb-row"><div class="pb-label lab-eli">In plain English</div>
+          <div class="pb-text">Models don't read words — they read <b>tokens</b> (roughly ¾ of a word each). The <b>context window</b> is the maximum number of tokens the model can "see" at once: your instructions, the conversation, any documents, and its own reply all share that budget. Run out, and older content must be dropped or summarized.</div></div>
+        <div class="pb-row"><div class="pb-label lab-ind">In industry</div>
+          <div class="pb-text">You pay per token (input + output), so token efficiency = cost control. Long PDFs get split into chunks; long chats get summarized. Managing this budget well is a core engineering skill.</div></div>
+        <div class="pb-row"><div class="pb-label lab-cca">Why it matters for CCA</div>
+          <div class="pb-text">Domain 5 is built on this: the <b>"lost in the middle"</b> effect (models recall the start and end of long context better than the middle), <b>context pruning</b> (trim a 40-field tool response to the 5 fields you need), and <b>"case facts" blocks</b> (pin critical numbers at the top so they're never summarized away).</div></div>
+        <a class="pb-link" href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank" rel="noopener">Anthropic: effective context engineering ↗</a>
+      </div>
+    </div>
+
+    <!-- 3 Prompt Engineering -->
+    <div class="primer" id="pr3">
+      <div class="primer-h" onclick="tp('pr3')">
+        <span class="pnum">03</span><span class="ptitle">Prompt Engineering</span>
+        <span class="pwhat">controlling output with words</span><span class="pchev">▼</span>
+      </div>
+      <div class="primer-b">
+        <div class="pb-row"><div class="pb-label lab-eli">In plain English</div>
+          <div class="pb-text">The craft of writing instructions and examples that get reliable output. Key moves: be <b>explicit</b> about criteria, give <b>few-shot examples</b> (show 2–4 worked examples), ask for <b>step-by-step reasoning</b>, and use <b>XML tags</b> to structure the prompt (Claude responds especially well to these).</div></div>
+        <div class="pb-row"><div class="pb-label lab-ind">In industry</div>
+          <div class="pb-text">It's the cheapest, fastest lever to improve an AI feature — no retraining, works across model updates. The first thing any AI engineer reaches for before considering anything heavier.</div></div>
+        <div class="pb-row"><div class="pb-label lab-cca">Why it matters for CCA</div>
+          <div class="pb-text">Domain 4 (20%). The tested rules: explicit measurable criteria beat vague ones ("flag functions over 50 lines" &gt; "flag long functions"); <b>2–4 few-shot examples</b> is optimal, never more than 6; and vague instructions like "be thorough" are <em>always</em> the wrong answer.</div></div>
+        <div class="analogy"><b>Interview soundbite:</b> "Prompt engineering is iterative spec-writing for a probabilistic system — you define success criteria, then tighten the prompt against failures."</div>
+        <a class="pb-link" href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview" target="_blank" rel="noopener">Anthropic prompt engineering docs ↗</a>
+        <a class="pb-link" href="https://www.promptingguide.ai" target="_blank" rel="noopener">DAIR.AI: the complete Prompt Engineering Guide ↗</a>
+      </div>
+    </div>
+
+    <!-- 4 Structured output -->
+    <div class="primer" id="pr4">
+      <div class="primer-h" onclick="tp('pr4')">
+        <span class="pnum">04</span><span class="ptitle">Structured Output &amp; <code>tool_use</code></span>
+        <span class="pwhat">getting clean JSON, reliably</span><span class="pchev">▼</span>
+      </div>
+      <div class="primer-b">
+        <div class="pb-row"><div class="pb-label lab-eli">In plain English</div>
+          <div class="pb-text">Apps need predictable data, not prose. By defining a "tool" with a <b>JSON schema</b> and asking the model to call it, you force the reply into an exact shape (fields, types, allowed values). This is the most reliable way to get machine-readable output.</div></div>
+        <div class="pb-row"><div class="pb-label lab-ind">In industry</div>
+          <div class="pb-text">Every time an LLM feeds a database, an API, or another service, structured output is how the handoff stays clean. Think invoice extraction, form filling, classification pipelines.</div></div>
+        <div class="pb-row"><div class="pb-label lab-cca">Why it matters for CCA</div>
+          <div class="pb-text">The most-tested nuance: <code>tool_use</code> guarantees <b>structure, not semantics</b>. The JSON will be valid, but the <em>values</em> can still be wrong (wrong vendor name, impossible date). So you always add a validation step afterward. Also know <code>tool_choice</code>: <code>"auto"</code> / <code>"any"</code> / forced specific tool.</div></div>
+        <a class="pb-link" href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices" target="_blank" rel="noopener">Anthropic: prompting best practices (tool use) ↗</a>
+      </div>
+    </div>
+
+    <!-- 5 Embeddings -->
+    <div class="primer" id="pr5">
+      <div class="primer-h" onclick="tp('pr5')">
+        <span class="pnum">05</span><span class="ptitle">Embeddings</span>
+        <span class="pwhat">turning meaning into numbers</span><span class="pchev">▼</span>
+      </div>
+      <div class="primer-b">
+        <div class="pb-row"><div class="pb-label lab-eli">In plain English</div>
+          <div class="pb-text">An embedding turns a piece of text into a long list of numbers (a <b>vector</b>) that captures its <em>meaning</em>. The trick: texts with similar meaning end up as vectors that sit close together in space. "dog" and "puppy" land near each other; "dog" and "spreadsheet" land far apart.</div></div>
+        <div class="pb-row"><div class="pb-label lab-ind">In industry</div>
+          <div class="pb-text">Embeddings power <b>semantic search</b> (find by meaning, not exact keywords), recommendations, deduplication, and clustering. They're the foundation under RAG.</div></div>
+        <div class="pb-row"><div class="pb-label lab-cca">Why it matters for CCA</div>
+          <div class="pb-text">Not heavily tested directly (vector DB internals are out of scope), but you must understand them to reason about RAG and about <b>shared vector stores</b> for multi-agent memory, which the Playbook highlights as the right pattern over passing full logs around.</div></div>
+        <div class="analogy"><b>Analogy:</b> a GPS coordinate for meaning — every sentence gets a location, and "nearby" means "similar."</div>
+        <a class="pb-link" href="https://medium.com/@sharanharsoor/the-complete-guide-to-embeddings-and-rag-from-theory-to-production-758a16d747ac" target="_blank" rel="noopener">Free guide: embeddings &amp; RAG end-to-end ↗</a>
+        <a class="pb-link" href="https://huggingface.co/learn/llm-course/chapter1/1" target="_blank" rel="noopener">Hugging Face: how embeddings &amp; tokens work ↗</a>
+      </div>
+    </div>
+
+    <!-- 6 Vector DB -->
+    <div class="primer" id="pr6">
+      <div class="primer-h" onclick="tp('pr6')">
+        <span class="pnum">06</span><span class="ptitle">Vector Database</span>
+        <span class="pwhat">storage built for similarity</span><span class="pchev">▼</span>
+      </div>
+      <div class="primer-b">
+        <div class="pb-row"><div class="pb-label lab-eli">In plain English</div>
+          <div class="pb-text">A database designed to store millions of embeddings and answer one question fast: "which stored vectors are closest to <em>this</em> one?" It uses approximate-nearest-neighbor (ANN) search so similarity lookups stay quick at scale. Popular ones: <b>Chroma, Pinecone, Qdrant, pgvector, FAISS, Milvus.</b></div></div>
+        <div class="pb-row"><div class="pb-label lab-ind">In industry</div>
+          <div class="pb-text">It's the retrieval layer of almost every RAG system and semantic-search product. You embed your documents once, store them, then query by similarity at runtime.</div></div>
+        <div class="pb-row"><div class="pb-label lab-cca">Why it matters for CCA</div>
+          <div class="pb-text">Implementation details are explicitly <b>out of scope</b>, but the <em>architectural</em> idea is in scope: a <b>shared vector store</b> lets subagents write findings and later retrieve only what's relevant — far better than daisy-chaining full conversation logs (which blows up token cost exponentially).</div></div>
+        <a class="pb-link" href="https://learnopencv.com/vector-db-and-rag-pipeline-for-document-rag/" target="_blank" rel="noopener">Free guide: vector DB + RAG pipeline ↗</a>
+      </div>
+    </div>
+
+    <!-- 7 RAG -->
+    <div class="primer" id="pr7">
+      <div class="primer-h" onclick="tp('pr7')">
+        <span class="pnum">07</span><span class="ptitle">RAG — Retrieval-Augmented Generation</span>
+        <span class="pwhat">grounding answers in your data</span><span class="pchev">▼</span>
+      </div>
+      <div class="primer-b">
+        <div class="pb-row"><div class="pb-label lab-eli">In plain English</div>
+          <div class="pb-text">Before the model answers, you <b>retrieve</b> the most relevant pieces of <em>your own</em> data (using embeddings + a vector DB), paste them into the prompt, and ask the model to answer <b>from those facts</b>. Three steps: <b>Retrieve → Augment → Generate.</b> The model stops guessing and starts citing.</div></div>
+        <div class="pb-row"><div class="pb-label lab-ind">In industry</div>
+          <div class="pb-text">The dominant pattern for "chat with your docs": company knowledge bases, support bots, legal/medical assistants, research tools. It adds <b>up-to-date and proprietary knowledge without retraining</b> the model, and sharply reduces hallucination.</div></div>
+        <div class="pb-row"><div class="pb-label lab-cca">Why it matters for CCA</div>
+          <div class="pb-text">RAG concepts underpin the data-extraction scenario, <b>information provenance</b> (keep claim→source mappings through synthesis), and context management. Evaluate it with metrics like <em>faithfulness</em> and <em>context recall</em> (the RAGAS framework).</div></div>
+        <div class="analogy"><b>Interview soundbite:</b> "RAG vs fine-tuning: RAG injects knowledge at <em>query time</em> and is cheap and updatable; fine-tuning bakes it into <em>weights</em> and is expensive and static. Start with RAG."</div>
+        <a class="pb-link" href="https://freeacademy.ai/blog/what-is-rag-retrieval-augmented-generation" target="_blank" rel="noopener">Free beginner-friendly RAG guide ↗</a>
+      </div>
+    </div>
+
+    <!-- 8 Tool use / function calling -->
+    <div class="primer" id="pr8">
+      <div class="primer-h" onclick="tp('pr8')">
+        <span class="pnum">08</span><span class="ptitle">Tool Use / Function Calling</span>
+        <span class="pwhat">letting the model take actions</span><span class="pchev">▼</span>
+      </div>
+      <div class="primer-b">
+        <div class="pb-row"><div class="pb-label lab-eli">In plain English</div>
+          <div class="pb-text">You hand the model a menu of functions it's allowed to call (each with a name, description, and JSON schema for its inputs). The model decides <em>which</em> to call and fills in the arguments; <b>your</b> code actually runs the function and feeds the result back. That's how a text model can look up an order or send an email.</div></div>
+        <div class="pb-row"><div class="pb-label lab-ind">In industry</div>
+          <div class="pb-text">The bridge between "the model talks" and "the model does." Every agent that books, queries, or updates anything is using tool calls under the hood.</div></div>
+        <div class="pb-row"><div class="pb-label lab-cca">Why it matters for CCA</div>
+          <div class="pb-text">Domain 2 (18%). Tested heavily: <b>tool descriptions</b> are how the model picks the right tool (vague descriptions → misrouting); cap an agent at <b>~4–5 tools</b> (18 degrades selection); and return <b>structured errors</b> (<code>isError</code>, <code>errorCategory</code>, <code>isRetryable</code>) — never a bare empty result for a failure.</div></div>
+        <a class="pb-link" href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices" target="_blank" rel="noopener">Anthropic: tool use guidance ↗</a>
+      </div>
+    </div>
+
+    <!-- 9 MCP -->
+    <div class="primer" id="pr9">
+      <div class="primer-h" onclick="tp('pr9')">
+        <span class="pnum">09</span><span class="ptitle">MCP — Model Context Protocol</span>
+        <span class="pwhat">"USB-C for AI tools"</span><span class="pchev">▼</span>
+      </div>
+      <div class="primer-b">
+        <div class="pb-row"><div class="pb-label lab-eli">In plain English</div>
+          <div class="pb-text">An open standard (created by Anthropic) for connecting models to external tools and data. You build an <b>MCP server</b> once that exposes some tools/data; then any <b>MCP client</b> (Claude Desktop, Claude Code, Cursor, etc.) can plug in and use it — no custom integration per app. Three primitives: <b>tools</b> (actions the model calls), <b>resources</b> (data/content catalogs), <b>prompts</b> (templates).</div></div>
+        <div class="pb-row"><div class="pb-label lab-ind">In industry</div>
+          <div class="pb-text">Rapidly becoming the default way to wire AI into Google Drive, Slack, GitHub, databases, and internal systems. "Build the connector once, reuse everywhere."</div></div>
+        <div class="pb-row"><div class="pb-label lab-cca">Why it matters for CCA</div>
+          <div class="pb-text">Core to Domain 2 and appears in 4 of 6 scenarios. Know: <code>.mcp.json</code> (project-scoped, shared via git) vs <code>~/.claude.json</code> (personal); <b>environment-variable expansion</b> for secrets (never hardcode); and <b>resources</b> (expose a catalog) vs <b>tools</b> (perform an action).</div></div>
+        <div class="analogy"><b>Analogy:</b> before USB-C, every device had its own charger. MCP is the universal port — one standard, any tool, any AI client.</div>
+        <a class="pb-link" href="https://modelcontextprotocol.io" target="_blank" rel="noopener">modelcontextprotocol.io (official) ↗</a>
+      </div>
+    </div>
+
+    <!-- 10 Agent -->
+    <div class="primer" id="pr10">
+      <div class="primer-h" onclick="tp('pr10')">
+        <span class="pnum">10</span><span class="ptitle">AI Agent &amp; the Agentic Loop</span>
+        <span class="pwhat">an LLM that acts in a loop</span><span class="pchev">▼</span>
+      </div>
+      <div class="primer-b">
+        <div class="pb-row"><div class="pb-label lab-eli">In plain English</div>
+          <div class="pb-text">An agent is an LLM running in a <b>loop</b>: it receives a goal, decides whether to call a tool, you run the tool and feed the result back, and it keeps going until the task is done. The loop is driven by <code>stop_reason</code>: if it's <code>"tool_use"</code> the agent wants to act (run the tool, continue); if it's <code>"end_turn"</code> the agent is finished (stop).</div></div>
+        <div class="pb-row"><div class="pb-label lab-ind">In industry</div>
+          <div class="pb-text">Agents power autonomous coding assistants, customer-support resolution, research automation, and data pipelines — anything that takes multiple steps and decisions rather than one reply.</div></div>
+        <div class="pb-row"><div class="pb-label lab-cca">Why it matters for CCA</div>
+          <div class="pb-text">Domain 1 is the biggest (27%). The #1 tested anti-pattern: <b>never parse the model's text</b> ("looks done") to decide when to stop — always check <code>stop_reason</code>. Tool results get appended to history so the model can reason about the next step.</div></div>
+        <a class="pb-link" href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener">Anthropic: building effective agents ↗</a>
+      </div>
+    </div>
+
+    <!-- 11 Multi-agent -->
+    <div class="primer" id="pr11">
+      <div class="primer-h" onclick="tp('pr11')">
+        <span class="pnum">11</span><span class="ptitle">Multi-Agent Systems (Hub-and-Spoke)</span>
+        <span class="pwhat">a coordinator + specialists</span><span class="pchev">▼</span>
+      </div>
+      <div class="primer-b">
+        <div class="pb-row"><div class="pb-label lab-eli">In plain English</div>
+          <div class="pb-text">For complex jobs, one <b>coordinator</b> agent breaks the work into subtasks and delegates each to a specialized <b>subagent</b> (a web-searcher, a doc-analyzer, a synthesizer). The coordinator routes all communication — that's the "hub-and-spoke" shape. Crucially, subagents start with <b>isolated context</b> — they don't automatically see the coordinator's conversation, so you must pass what they need explicitly.</div></div>
+        <div class="pb-row"><div class="pb-label lab-ind">In industry</div>
+          <div class="pb-text">Research pipelines, large-scale code review, and any workflow too big for one context window. Specialization keeps each agent focused and its tool list small.</div></div>
+        <div class="pb-row"><div class="pb-label lab-cca">Why it matters for CCA</div>
+          <div class="pb-text">Heavily tested in Domain 1. Know: spawn subagents in <b>parallel</b> by emitting multiple <code>Task</code> calls in one coordinator response; the coordinator's <code>allowedTools</code> must include <code>Task</code>; and the classic failure — <b>too-narrow task decomposition</b> leaving whole topics uncovered (the root cause is the coordinator's plan, not the subagents).</div></div>
+        <a class="pb-link" href="https://claudecertifications.com/claude-certified-architect/domains/agentic-architecture" target="_blank" rel="noopener">CCA: Agentic Architecture domain ↗</a>
+      </div>
+    </div>
+
+    <!-- 12 Hooks -->
+    <div class="primer" id="pr12">
+      <div class="primer-h" onclick="tp('pr12')">
+        <span class="pnum">12</span><span class="ptitle">Hooks &amp; Deterministic Guardrails</span>
+        <span class="pwhat">guarantees, not suggestions</span><span class="pchev">▼</span>
+      </div>
+      <div class="primer-b">
+        <div class="pb-row"><div class="pb-label lab-eli">In plain English</div>
+          <div class="pb-text">A hook is your own code that runs automatically at a fixed point in the agent's lifecycle. <b>PreToolUse</b> fires <em>before</em> a tool runs (you can block or modify it); <b>PostToolUse</b> fires <em>after</em> (you can normalize or log the result). Because it's plain code, it's <b>deterministic</b> — it runs 100% of the time, unlike a prompt instruction the model might ignore.</div></div>
+        <div class="pb-row"><div class="pb-label lab-ind">In industry</div>
+          <div class="pb-text">Used for compliance ("never refund over $500"), audit logging, and cleaning up messy tool outputs (e.g., normalizing different date formats) before the model sees them.</div></div>
+        <div class="pb-row"><div class="pb-label lab-cca">Why it matters for CCA</div>
+          <div class="pb-text">This is <em>the</em> recurring exam theme: when a question says "guaranteed," "deterministic," or "zero failure," the answer is a <b>hook or programmatic prerequisite</b> — never a system prompt, few-shot, or classifier. Prompts have a non-zero failure rate; hooks don't.</div></div>
+        <a class="pb-link" href="https://platform.claude.com/docs/en/agent-sdk/hooks" target="_blank" rel="noopener">Anthropic: Agent SDK hooks ↗</a>
+      </div>
+    </div>
+
+    <!-- 13 Claude Code -->
+    <div class="primer" id="pr13">
+      <div class="primer-h" onclick="tp('pr13')">
+        <span class="pnum">13</span><span class="ptitle">Claude Code &amp; the Agent SDK</span>
+        <span class="pwhat">the coding agent + its config</span><span class="pchev">▼</span>
+      </div>
+      <div class="primer-b">
+        <div class="pb-row"><div class="pb-label lab-eli">In plain English</div>
+          <div class="pb-text">Claude Code is Anthropic's agentic coding tool (terminal/IDE). You configure it with a <b>CLAUDE.md</b> file (project instructions), <b>skills</b> (reusable multi-step behaviors), <b>slash commands</b>, <b>path rules</b>, and <b>MCP servers</b>. The <b>Agent SDK</b> is the same engine, programmable in Python/TypeScript, so you can build your own agents on it.</div></div>
+        <div class="pb-row"><div class="pb-label lab-ind">In industry</div>
+          <div class="pb-text">Dev-productivity, automated code review in CI/CD, refactoring, test generation, and exploring unfamiliar codebases. Run it non-interactively with the <code>-p</code> flag inside pipelines.</div></div>
+        <div class="pb-row"><div class="pb-label lab-cca">Why it matters for CCA</div>
+          <div class="pb-text">Domain 3 (20%). Know the <b>CLAUDE.md hierarchy</b> (user → project → directory), <b>commands vs skills</b> (skills can run isolated via <code>context: fork</code>), <b>plan mode vs direct execution</b>, path-scoped <code>.claude/rules/</code>, and the <code>-p</code> / <code>--output-format json</code> CI flags.</div></div>
+        <a class="pb-link" href="https://docs.claude.com/en/docs/agent-sdk/overview" target="_blank" rel="noopener">Anthropic: Agent SDK overview ↗</a>
+      </div>
+    </div>
+
+    <!-- 14 LLMOps -->
+    <div class="primer" id="pr14">
+      <div class="primer-h" onclick="tp('pr14')">
+        <span class="pnum">14</span><span class="ptitle">LLMOps (Tracing, Evals, Versioning)</span>
+        <span class="pwhat">keeping AI reliable in prod</span><span class="pchev">▼</span>
+      </div>
+      <div class="primer-b">
+        <div class="pb-row"><div class="pb-label lab-eli">In plain English</div>
+          <div class="pb-text">The "operations" layer for LLM apps: <b>tracing</b> every run so you can see what happened, <b>versioning</b> prompts, building <b>eval</b> suites that score quality automatically, and monitoring cost/latency. Tools: LangSmith, Langfuse.</div></div>
+        <div class="pb-row"><div class="pb-label lab-ind">In industry</div>
+          <div class="pb-text">It's what separates a demo from a production system. When an agent misbehaves, traces tell you exactly which tool call or prompt went wrong.</div></div>
+        <div class="pb-row"><div class="pb-label lab-cca">Why it matters for CCA</div>
+          <div class="pb-text">Not a named domain, but it reinforces Domain 5 (reliability) and is a <b>strong interview topic</b>. Bonus: every failure mode you see in a trace maps to a CCA anti-pattern (looping → <code>stop_reason</code>; bad tool pick → tool descriptions; context overflow → pruning).</div></div>
+        <a class="pb-link" href="https://www.anthropic.com/engineering" target="_blank" rel="noopener">Anthropic engineering blog ↗</a>
+      </div>
+    </div>
+
+    <!-- 15 Batch / cost -->
+    <div class="primer" id="pr15">
+      <div class="primer-h" onclick="tp('pr15')">
+        <span class="pnum">15</span><span class="ptitle">Batch API &amp; Cost/Latency Trade-offs</span>
+        <span class="pwhat">cheaper when you can wait</span><span class="pchev">▼</span>
+      </div>
+      <div class="primer-b">
+        <div class="pb-row"><div class="pb-label lab-eli">In plain English</div>
+          <div class="pb-text">For work that isn't time-sensitive, the <b>Message Batches API</b> processes large jobs at <b>~50% lower cost</b> with up to a <b>24-hour</b> turnaround and <b>no latency guarantee</b>. You correlate each request/response with a <code>custom_id</code>.</div></div>
+        <div class="pb-row"><div class="pb-label lab-ind">In industry</div>
+          <div class="pb-text">Overnight report generation, weekly audits, bulk document processing — anything that can run while no one is waiting.</div></div>
+        <div class="pb-row"><div class="pb-label lab-cca">Why it matters for CCA</div>
+          <div class="pb-text">A favorite Domain 4 question: don't route a <b>blocking</b> workflow (a pre-merge check developers wait on) through the batch API — "often faster than 24h" is never an SLA. Real-time for blocking; batch for overnight. Also: batch can't do multi-turn tool calling mid-request.</div></div>
+        <a class="pb-link" href="https://docs.anthropic.com/en/docs/build-with-claude/batch-processing" target="_blank" rel="noopener">Anthropic: Message Batches API ↗</a>
+      </div>
+    </div>
+
+    <!-- 16 RAG vs FT vs Prompt -->
+    <div class="primer" id="pr16">
+      <div class="primer-h" onclick="tp('pr16')">
+        <span class="pnum">16</span><span class="ptitle">Prompting vs RAG vs Fine-tuning</span>
+        <span class="pwhat">the "which lever?" question</span><span class="pchev">▼</span>
+      </div>
+      <div class="primer-b">
+        <div class="pb-row"><div class="pb-label lab-eli">In plain English</div>
+          <div class="pb-text">Three ways to make a model better at your task. <b>Prompting:</b> change the instructions — instant, free, first thing to try. <b>RAG:</b> feed in relevant facts at query time — best when you need current or proprietary knowledge. <b>Fine-tuning:</b> retrain the weights on your data — expensive, static, for when you need a specific <em>style/behavior</em> at scale.</div></div>
+        <div class="pb-row"><div class="pb-label lab-ind">In industry</div>
+          <div class="pb-text">The standard decision ladder: try prompting → add RAG for knowledge → only fine-tune if the first two can't hit the bar. Most production systems never need fine-tuning.</div></div>
+        <div class="pb-row"><div class="pb-label lab-cca">Why it matters for CCA</div>
+          <div class="pb-text">Fine-tuning is explicitly <b>out of scope</b> for the exam — but knowing <em>why</em> (the exam favors prompting/RAG/architecture solutions over retraining) helps you eliminate distractors that propose training a model when a simpler lever exists.</div></div>
+        <div class="analogy"><b>Interview soundbite:</b> "Prompting changes what you <em>say</em>, RAG changes what the model <em>sees</em>, fine-tuning changes what the model <em>is</em>. Reach for them in that order."</div>
+        <a class="pb-link" href="https://www.singlestore.com/blog/a-guide-to-retrieval-augmented-generation-rag/" target="_blank" rel="noopener">Free guide: RAG in context ↗</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ROADMAP -->
+  <section id="roadmap"><span class="anchor"></span>
+    <div class="sec-head">
+      <div class="sec-tag">// 02 · the 30-day roadmap</div>
+      <h2 class="sec-title">Study, build, and drill — every day</h2>
+      <p class="sec-sub">Four weeks. Each day pairs a concept with a tiny build and an exam drill. Resources are linked right on the day. Tick days off as you go — your progress saves automatically in this browser.</p>
+    </div>
+
+    <div class="wtabs">
+      <div class="wtab active" onclick="sw('w1',this)">Week 1 · Prompt + Context</div>
+      <div class="wtab" onclick="sw('w2',this)">Week 2 · Tools + MCP + RAG</div>
+      <div class="wtab" onclick="sw('w3',this)">Week 3 · Agents + Claude Code</div>
+      <div class="wtab" onclick="sw('w4',this)">Week 4 · Deploy + Exam</div>
+    </div>
+
+    <!-- WEEK 1 -->
+    <div class="wphase active" id="w1">
+      <div class="ph-banner">
+        <h3>Week 1 — Foundations: Prompt Engineering &amp; Context</h3>
+        <p>Domains 4 (20%) + 5 (15%) = 35% of the exam. Get the Anthropic SDK running, master structured output and context patterns. If you're new to AI, read primers 01–04 before Day 1.</p>
+        <div class="ph-meta"><span class="ph-pill">D4 + D5</span><span class="ph-pill">SDK live by Day 2</span><span class="ph-pill">primers 01–07</span></div>
+      </div>
+
+      <div class="day" data-day="1">
+        <div class="day-h" onclick="td(this)">
+          <span class="daycheck" data-c="1" onclick="ck(event,1)"></span>
+          <span class="daynum">DAY 01</span>
+          <span class="daytitle">Orientation + Anthropic SDK setup</span>
+          <span class="domtag t-d4">D4</span><span class="daychev">▼</span>
+        </div>
+        <div class="day-b">
+          <div><div class="blk-label">study</div><div class="blk-text">Read the full CCA Exam Guide PDF (all 5 domains, 6 scenarios, 12 sample Qs). Skim primers 01–04 here. Read the prompt-engineering overview.</div></div>
+          <div><div class="blk-label">build</div><div class="blk-text">Install the Anthropic Python SDK. Run 10 prompt variations on one task; log how temperature &amp; specificity change output.</div></div>
+          <div class="build-tag"><div class="bl">DELIVERABLE</div><div class="bt">SDK running + a 10-variation prompt log pushed to GitHub.</div></div>
+          <div class="res-links">
+            <a class="res-chip" href="resources/cca-exam-guide.pdf" target="_blank"><span class="ic">📄</span> Exam Guide (your PDF)</a>
+            <a class="res-chip" href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview" target="_blank" rel="noopener"><span class="ic">📘</span> Prompt eng overview</a>
+            <a class="res-chip" href="https://github.com/anthropics/prompt-eng-interactive-tutorial" target="_blank" rel="noopener"><span class="ic">⚡</span> Interactive tutorial</a>
+            <a class="res-chip" href="https://github.com/microsoft/generative-ai-for-beginners" target="_blank" rel="noopener"><span class="ic">🌱</span> New to AI? GenAI for Beginners</a>
+            <a class="res-chip" href="https://huggingface.co/learn/llm-course/chapter1/1" target="_blank" rel="noopener"><span class="ic">🤗</span> HF LLM Course ch.1</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="day" data-day="2">
+        <div class="day-h" onclick="td(this)">
+          <span class="daycheck" data-c="2" onclick="ck(event,2)"></span>
+          <span class="daynum">DAY 02</span>
+          <span class="daytitle">Few-shot prompting &amp; output consistency</span>
+          <span class="domtag t-d4">D4</span><span class="daychev">▼</span>
+        </div>
+        <div class="day-b">
+          <div><div class="blk-label">study</div><div class="blk-text">CCA prompt-engineering domain page (section d4.2). Rule: <b>2–4 examples</b>, ≥1 edge case, never &gt;6.</div></div>
+          <div><div class="blk-text" style="margin-top:23px">Build a notebook comparing 0/1/3/6-shot on a classification task; measure consistency across 10 runs each.</div></div>
+          <div class="ap-tag"><div class="al">EXAM TRAP</div><div class="at">"Add 8–10 examples" is <b>always wrong</b> — 6+ bloats with no benefit. Correct: 2–4 targeted, one covering an edge case.</div></div>
+          <div class="res-links">
+            <a class="res-chip" href="https://claudecertifications.com/claude-certified-architect/domains/prompt-engineering" target="_blank" rel="noopener"><span class="ic">🌐</span> CCA: Prompt Engineering</a>
+            <a class="res-chip" href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices" target="_blank" rel="noopener"><span class="ic">📘</span> Prompting best practices</a>
+            <a class="res-chip" href="https://www.promptingguide.ai/techniques/fewshot" target="_blank" rel="noopener"><span class="ic">✍️</span> DAIR.AI: few-shot guide</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="day" data-day="3">
+        <div class="day-h" onclick="td(this)">
+          <span class="daycheck" data-c="3" onclick="ck(event,3)"></span>
+          <span class="daynum">DAY 03</span>
+          <span class="daytitle"><code>tool_use</code> structured output + JSON schemas</span>
+          <span class="domtag t-d4">D4</span><span class="daychev">▼</span>
+        </div>
+        <div class="day-b">
+          <div><div class="blk-label">study</div><div class="blk-text">CCA d4.3. Key: <code>tool_use</code> = structure only, not semantics. Nullable fields stop hallucination. <code>enum + "other" + detail</code> for extensible categories.</div></div>
+          <div><div class="blk-label">build</div><div class="blk-text">Build an invoice extractor: force a schema with <code>tool_choice</code>; feed a doc missing the date; verify it returns <code>null</code>, not a fabricated value.</div></div>
+          <div class="ap-tag"><div class="al">MOST-TESTED</div><div class="at"><b>"tool_use eliminates all errors" is always wrong.</b> Add a semantic validation step after extraction (e.g., calculated_total vs stated_total).</div></div>
+          <div class="res-links">
+            <a class="res-chip" href="resources/architects-playbook.pdf" target="_blank"><span class="ic">📘</span> Playbook (your PDF) — schemas p5–7</a>
+            <a class="res-chip" href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices" target="_blank" rel="noopener"><span class="ic">📘</span> Tool use docs</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="day" data-day="4">
+        <div class="day-h" onclick="td(this)">
+          <span class="daycheck" data-c="4" onclick="ck(event,4)"></span>
+          <span class="daynum">DAY 04</span>
+          <span class="daytitle">Validation-retry loops + context optimization</span>
+          <span class="domtag t-d4">D4</span><span class="domtag t-d5">D5</span><span class="daychev">▼</span>
+        </div>
+        <div class="day-b">
+          <div><div class="blk-label">study</div><div class="blk-text">CCA d4.4 + d5.1. Retry fixes <b>format</b> errors, never <b>absent</b> info. Case-facts block at top; lost-in-the-middle; trim verbose tool outputs.</div></div>
+          <div><div class="blk-label">build</div><div class="blk-text">Add a retry loop to your extractor: on validation fail, append the specific error and retry. Prove it succeeds for format errors and correctly gives up on missing data.</div></div>
+          <div class="ap-tag"><div class="al">RETRY BOUNDARY</div><div class="at">Format/structure error → retry works. Information absent from source → retrying never helps. Recognize the difference.</div></div>
+          <div class="res-links">
+            <a class="res-chip" href="https://claudecertifications.com/claude-certified-architect/domains/context-management" target="_blank" rel="noopener"><span class="ic">🌐</span> CCA: Context Management</a>
+            <a class="res-chip" href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank" rel="noopener"><span class="ic">📘</span> Context engineering</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="day" data-day="5">
+        <div class="day-h" onclick="td(this)">
+          <span class="daycheck" data-c="5" onclick="ck(event,5)"></span>
+          <span class="daynum">DAY 05</span>
+          <span class="daytitle">Escalation patterns + confidence calibration</span>
+          <span class="domtag t-d5">D5</span><span class="daychev">▼</span>
+        </div>
+        <div class="day-b">
+          <div><div class="blk-label">study</div><div class="blk-text">CCA d5.2–d5.4. Valid escalation: explicit human request, policy gap, capability limit, threshold, repeated failure. <b>Invalid: sentiment, self-confidence.</b> Track accuracy per document type, not aggregate.</div></div>
+          <div><div class="blk-label">build</div><div class="blk-text">Write <code>escalation_decision()</code> with all valid triggers + tests proving sentiment does NOT trigger escalation.</div></div>
+          <div class="ap-tag"><div class="al">SAMPLE Q3</div><div class="at">Low first-contact-resolution fix = <b>explicit criteria + few-shot</b>, never sentiment analysis or a self-confidence threshold (poorly calibrated on hard cases).</div></div>
+          <div class="res-links">
+            <a class="res-chip" href="https://claudecertifications.com/claude-certified-architect/domains/context-management" target="_blank" rel="noopener"><span class="ic">🌐</span> CCA: Context &amp; Reliability</a>
+            <a class="res-chip" href="https://claudecertifications.com/claude-certified-architect/practice-questions" target="_blank" rel="noopener"><span class="ic">✏️</span> Practice questions</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="day" data-day="6">
+        <div class="day-h" onclick="td(this)">
+          <span class="daycheck" data-c="6" onclick="ck(event,6)"></span>
+          <span class="daynum">DAY 06</span>
+          <span class="daytitle">Batch API + multi-pass review + W1 checkpoint</span>
+          <span class="domtag t-d4">D4</span><span class="daychev">▼</span>
+        </div>
+        <div class="day-b">
+          <div><div class="blk-label">study</div><div class="blk-text">Batch API: 50% off, 24h, no SLA, <code>custom_id</code>. Real-time for blocking pre-merge; batch for overnight. Independent reviewer instance &gt; same-session self-review.</div></div>
+          <div><div class="blk-label">build + review</div><div class="blk-text">Submit a 5-doc batch with <code>custom_id</code>; simulate one failure and resubmit only it. Then take a 10-question W1 checkpoint quiz.</div></div>
+          <div class="ap-tag"><div class="al">SAMPLE Q11</div><div class="at">Don't move a blocking pre-merge check to the batch API — "often faster than 24h" is not an SLA. Batch only the overnight report.</div></div>
+          <div class="res-links">
+            <a class="res-chip" href="https://docs.anthropic.com/en/docs/build-with-claude/batch-processing" target="_blank" rel="noopener"><span class="ic">📘</span> Batch API docs</a>
+            <a class="res-chip" href="https://claudecertifications.com/claude-certified-architect/practice-questions" target="_blank" rel="noopener"><span class="ic">✏️</span> Practice bank</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 2 -->
+    <div class="wphase" id="w2">
+      <div class="ph-banner">
+        <h3>Week 2 — Tool Design, MCP &amp; RAG</h3>
+        <p>Domain 2 (18%) + RAG fundamentals. Build a real MCP server and extend a RAG system. If you're new, read primers 05–09 first.</p>
+        <div class="ph-meta"><span class="ph-pill">D2</span><span class="ph-pill">MCP server live by Day 9</span><span class="ph-pill">primers 05–09</span></div>
+      </div>
+
+      <div class="day" data-day="7">
+        <div class="day-h" onclick="td(this)">
+          <span class="daycheck" data-c="7" onclick="ck(event,7)"></span>
+          <span class="daynum">DAY 07</span>
+          <span class="daytitle">Tool descriptions + structured error responses</span>
+          <span class="domtag t-d2">D2</span><span class="daychev">▼</span>
+        </div>
+        <div class="day-b">
+          <div><div class="blk-label">study</div><div class="blk-text">CCA d2.1–d2.2. Rich descriptions (purpose, formats, examples, edge cases, when-not-to-use). Structured errors: <code>isError</code>, <code>errorCategory</code>, <code>isRetryable</code>.</div></div>
+          <div><div class="blk-label">build</div><div class="blk-text">Write a minimal vs rich tool description; add one access-failure error (<code>isError:true</code>) and one valid empty result (<code>isError:false</code>).</div></div>
+          <div class="ap-tag"><div class="al">CATASTROPHIC ANTI-PATTERN</div><div class="at">DB times out → returning <code>[]</code> tells the agent "no records exist." Always <code>isError:true</code> for access failures.</div></div>
+          <div class="res-links">
+            <a class="res-chip" href="https://claudecertifications.com/claude-certified-architect/domains/tool-design-mcp" target="_blank" rel="noopener"><span class="ic">🌐</span> CCA: Tool Design &amp; MCP</a>
+            <a class="res-chip" href="resources/architects-playbook.pdf" target="_blank"><span class="ic">📘</span> Playbook — graceful failure p13</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="day" data-day="8">
+        <div class="day-h" onclick="td(this)">
+          <span class="daycheck" data-c="8" onclick="ck(event,8)"></span>
+          <span class="daynum">DAY 08</span>
+          <span class="daytitle">Tool distribution + <code>tool_choice</code></span>
+          <span class="domtag t-d2">D2</span><span class="daychev">▼</span>
+        </div>
+        <div class="day-b">
+          <div><div class="blk-label">study</div><div class="blk-text">CCA d2.3. 4–5 tools per agent; 18 degrades selection. <code>tool_choice</code>: auto / any / forced. Least-privilege per subagent.</div></div>
+          <div><div class="blk-label">build</div><div class="blk-text">Refactor an 18-tool config into a coordinator + 3 specialized agents (4–5 tools each).</div></div>
+          <div class="ap-tag"><div class="al">SAMPLE Q9</div><div class="at">Synthesis agent needs fact-checks → give it a scoped <code>verify_fact</code> tool for the 85% simple case; route complex ones through the coordinator. Don't hand it all web tools.</div></div>
+          <div class="res-links">
+            <a class="res-chip" href="https://claudecertifications.com/claude-certified-architect/domains/tool-design-mcp" target="_blank" rel="noopener"><span class="ic">🌐</span> CCA: Tool Design</a>
+            <a class="res-chip" href="https://docs.claude.com/en/docs/agent-sdk/subagents" target="_blank" rel="noopener"><span class="ic">📘</span> SDK: subagents &amp; tools</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="day" data-day="9">
+        <div class="day-h" onclick="td(this)">
+          <span class="daycheck" data-c="9" onclick="ck(event,9)"></span>
+          <span class="daynum">DAY 09</span>
+          <span class="daytitle">Build a real MCP server + config scoping</span>
+          <span class="domtag t-d2">D2</span><span class="daychev">▼</span>
+        </div>
+        <div class="day-b">
+          <div><div class="blk-label">study</div><div class="blk-text">CCA d2.4–d2.5. <code>.mcp.json</code> (project, shared) vs <code>~/.claude.json</code> (personal). Env-var expansion for secrets. Grep (content) vs Glob (paths).</div></div>
+          <div><div class="blk-label">build</div><div class="blk-text">Build an MCP server (stdio) exposing 2–3 tools; configure it in <code>.mcp.json</code> with <code>${API_KEY}</code> expansion; connect to Claude and confirm discovery.</div></div>
+          <div class="ap-tag"><div class="al">CONFIG TRAPS</div><div class="at">Secrets hardcoded in <code>.mcp.json</code> = wrong. Personal servers in <code>.mcp.json</code> = wrong (use <code>~/.claude.json</code>). Team config in <code>~/.claude.json</code> = wrong.</div></div>
+          <div class="res-links">
+            <a class="res-chip" href="https://modelcontextprotocol.io" target="_blank" rel="noopener"><span class="ic">🌐</span> modelcontextprotocol.io</a>
+            <a class="res-chip" href="https://anthropic.skilljar.com/introduction-to-model-context-protocol" target="_blank" rel="noopener"><span class="ic">🎓</span> Anthropic MCP course (free)</a>
+            <a class="res-chip" href="https://www.anthropic.com/news/model-context-protocol" target="_blank" rel="noopener"><span class="ic">📘</span> MCP intro</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="day" data-day="10">
+        <div class="day-h" onclick="td(this)">
+          <span class="daycheck" data-c="10" onclick="ck(event,10)"></span>
+          <span class="daynum">DAY 10</span>
+          <span class="daytitle">RAG architecture + extend a RAG system</span>
+          <span class="domtag t-d2">D2</span><span class="domtag t-d5">D5</span><span class="daychev">▼</span>
+        </div>
+        <div class="day-b">
+          <div><div class="blk-label">study</div><div class="blk-text">Primers 05–07. Chunking, reranking, RAGAS metrics (faithfulness, context recall). Expose a vector store as an MCP <b>resource</b>, not a tool. Provenance: keep claim→source mappings.</div></div>
+          <div><div class="blk-label">build</div><div class="blk-text">Build (or extend) a small RAG over a folder of PDFs: add a reranker, run RAGAS, log baseline metrics.</div></div>
+          <div class="res-links">
+            <a class="res-chip" href="https://freeacademy.ai/blog/what-is-rag-retrieval-augmented-generation" target="_blank" rel="noopener"><span class="ic">📖</span> RAG beginner guide</a>
+            <a class="res-chip" href="https://learnopencv.com/vector-db-and-rag-pipeline-for-document-rag/" target="_blank" rel="noopener"><span class="ic">📖</span> Vector DB + RAG pipeline</a>
+            <a class="res-chip" href="https://huggingface.co/learn/llm-course/chapter1/1" target="_blank" rel="noopener"><span class="ic">🤗</span> HF: embeddings explained</a>
+            <a class="res-chip" href="https://fullstackdeeplearning.com/llm-bootcamp/" target="_blank" rel="noopener"><span class="ic">🎬</span> Full Stack: augmented LLMs (RAG)</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="day" data-day="11">
+        <div class="day-h" onclick="td(this)">
+          <span class="daycheck" data-c="11" onclick="ck(event,11)"></span>
+          <span class="daynum">DAY 11</span>
+          <span class="daytitle">Scenario 4 (Dev Tools) deep dive</span>
+          <span class="domtag t-d2">D2</span><span class="daychev">▼</span>
+        </div>
+        <div class="day-b">
+          <div><div class="blk-label">study</div><div class="blk-text">Built-in tools (Read/Write/Edit/Bash/Grep/Glob). Directed exploration: Grep entry points → Read to trace → never read all files. Granular vs monolithic MCP tools.</div></div>
+          <div><div class="blk-label">drill</div><div class="blk-text">Work the Developer Productivity scenario questions in the practice bank with full distractor analysis.</div></div>
+          <div class="ap-tag"><div class="al">TESTED DIRECTLY</div><div class="at"><b>Grep</b> searches file <em>contents</em>; <b>Glob</b> matches file <em>paths</em>. Find all callers → Grep. Find all <code>*.test.tsx</code> → Glob.</div></div>
+          <div class="res-links">
+            <a class="res-chip" href="resources/architects-playbook.pdf" target="_blank"><span class="ic">📘</span> Playbook — tool specificity p16–17</a>
+            <a class="res-chip" href="https://alexop.dev/posts/claude-code-customization-guide-claudemd-skills-subagents/" target="_blank" rel="noopener"><span class="ic">📖</span> Claude Code feature guide</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="day" data-day="12">
+        <div class="day-h" onclick="td(this)">
+          <span class="daycheck" data-c="12" onclick="ck(event,12)"></span>
+          <span class="daynum">DAY 12</span>
+          <span class="daytitle">Build a 3-tool chain + error propagation</span>
+          <span class="domtag t-d2">D2</span><span class="daychev">▼</span>
+        </div>
+        <div class="day-b">
+          <div><div class="blk-label">build</div><div class="blk-text">Chain: web search → calculator → extractor. Give each a structured error response. Simulate one timeout; verify <code>isError:true</code> propagates and the chain degrades gracefully.</div></div>
+          <div><div class="blk-label">drill</div><div class="blk-text">10 mixed D2 questions. For each wrong answer, write the rule that the right answer applies.</div></div>
+          <div class="res-links">
+            <a class="res-chip" href="https://docs.claude.com/en/docs/agent-sdk/overview" target="_blank" rel="noopener"><span class="ic">📘</span> Agent SDK overview</a>
+            <a class="res-chip" href="https://claudecertifications.com/claude-certified-architect/practice-questions" target="_blank" rel="noopener"><span class="ic">✏️</span> Practice bank</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 3 -->
+    <div class="wphase" id="w3">
+      <div class="ph-banner">
+        <h3>Week 3 — Agents &amp; Claude Code (the heaviest week)</h3>
+        <p>Domains 1 (27%) + 3 (20%) = 47% of the exam. Build agentic loops from scratch, then a LangGraph multi-agent system, then configure Claude Code. Read primers 10–13 first.</p>
+        <div class="ph-meta"><span class="ph-pill">D1 + D3</span><span class="ph-pill">agent live by Day 18</span><span class="ph-pill">primers 10–13</span></div>
+      </div>
+
+      <div class="day" data-day="13">
+        <div class="day-h" onclick="td(this)">
+          <span class="daycheck" data-c="13" onclick="ck(event,13)"></span>
+          <span class="daynum">DAY 13</span>
+          <span class="daytitle">Agentic loops + <code>stop_reason</code> from scratch</span>
+          <span class="domtag t-d1">D1</span><span class="daychev">▼</span>
+        </div>
+        <div class="day-b">
+          <div><div class="blk-label">study</div><div class="blk-text">CCA d1.1. Loop: <code>"tool_use"</code> → run + continue; <code>"end_turn"</code> → stop. Tool results appended to history each turn.</div></div>
+          <div><div class="blk-label">build</div><div class="blk-text">Write a raw agentic loop using the Claude API directly (no framework): inspect <code>stop_reason</code>, execute tools, append results, loop.</div></div>
+          <div class="ap-tag"><div class="al">#1 D1 ANTI-PATTERN</div><div class="at">Never parse the model's text ("task complete") to end the loop. Always check <code>stop_reason</code>.</div></div>
+          <div class="res-links">
+            <a class="res-chip" href="https://claudecertifications.com/claude-certified-architect/domains/agentic-architecture" target="_blank" rel="noopener"><span class="ic">🌐</span> CCA: Agentic Architecture</a>
+            <a class="res-chip" href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener"><span class="ic">📘</span> Building effective agents</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="day" data-day="14">
+        <div class="day-h" onclick="td(this)">
+          <span class="daycheck" data-c="14" onclick="ck(event,14)"></span>
+          <span class="daynum">DAY 14</span>
+          <span class="daytitle">Hub-and-spoke + parallel subagents</span>
+          <span class="domtag t-d1">D1</span><span class="daychev">▼</span>
+        </div>
+        <div class="day-b">
+          <div><div class="blk-label">study</div><div class="blk-text">CCA d1.2. Subagents have isolated context — pass everything explicitly. Coordinator <code>allowedTools</code> must include <code>Task</code>. Parallel = multiple Task calls in one response.</div></div>
+          <div><div class="blk-label">build</div><div class="blk-text">Add a 2-subagent coordinator (searcher + summarizer). Spawn both in parallel; prove context isolation.</div></div>
+          <div class="ap-tag"><div class="al">SAMPLE Q7</div><div class="at">Reports miss whole topics → root cause is the coordinator's <b>narrow decomposition</b>, not the subagents (they did their assigned scope correctly).</div></div>
+          <div class="res-links">
+            <a class="res-chip" href="https://docs.claude.com/en/docs/agent-sdk/subagents" target="_blank" rel="noopener"><span class="ic">📘</span> SDK: subagents</a>
+            <a class="res-chip" href="https://www.youtube.com/watch?v=zVBJ-40hZGw" target="_blank" rel="noopener"><span class="ic">📹</span> Architecting AI agents (video)</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="day" data-day="15">
+        <div class="day-h" onclick="td(this)">
+          <span class="daycheck" data-c="15" onclick="ck(event,15)"></span>
+          <span class="daynum">DAY 15</span>
+          <span class="daytitle">Hooks &amp; deterministic enforcement</span>
+          <span class="domtag t-d1">D1</span><span class="daychev">▼</span>
+        </div>
+        <div class="day-b">
+          <div><div class="blk-label">study</div><div class="blk-text">CCA d1.3. PostToolUse (normalize after), PreToolUse (block before). Hooks = deterministic; prompts ≈ 3% failure.</div></div>
+          <div><div class="blk-label">build</div><div class="blk-text">Write a PostToolUse hook that normalizes mixed date formats, and a PreToolUse hook that blocks refunds &gt;$500 and routes to escalation.</div></div>
+          <div class="ap-tag"><div class="al">80% OF D1</div><div class="at">"Guaranteed / deterministic / zero failure" → answer is a <b>hook or prerequisite</b>, never a prompt, few-shot, or classifier.</div></div>
+          <div class="res-links">
+            <a class="res-chip" href="https://platform.claude.com/docs/en/agent-sdk/hooks" target="_blank" rel="noopener"><span class="ic">📘</span> SDK: hooks</a>
+            <a class="res-chip" href="resources/architects-playbook.pdf" target="_blank"><span class="ic">📘</span> Playbook — zero-tolerance p10</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="day" data-day="16">
+        <div class="day-h" onclick="td(this)">
+          <span class="daycheck" data-c="16" onclick="ck(event,16)"></span>
+          <span class="daynum">DAY 16</span>
+          <span class="daytitle">Sessions, fork/resume + LangGraph agent</span>
+          <span class="domtag t-d1">D1</span><span class="daychev">▼</span>
+        </div>
+        <div class="day-b">
+          <div><div class="blk-label">study</div><div class="blk-text">CCA d1.4. <code>fork_session</code> for divergent paths; <code>--resume</code> for named continuation; start fresh when prior tool results are stale.</div></div>
+          <div><div class="blk-label">build</div><div class="blk-text">Build a 3-node LangGraph agent (planner → executor → reviewer) with checkpointing. Compare to a single-agent version.</div></div>
+          <div class="res-links">
+            <a class="res-chip" href="https://www.youtube.com/watch?v=KtHdbzChVWo" target="_blank" rel="noopener"><span class="ic">📹</span> 6-Month AI Engineer roadmap</a>
+            <a class="res-chip" href="https://claudecertifications.com/claude-certified-architect/domains/agentic-architecture" target="_blank" rel="noopener"><span class="ic">🌐</span> CCA: Agentic Architecture</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="day" data-day="17">
+        <div class="day-h" onclick="td(this)">
+          <span class="daycheck" data-c="17" onclick="ck(event,17)"></span>
+          <span class="daynum">DAY 17</span>
+          <span class="daytitle">CLAUDE.md hierarchy + commands vs skills</span>
+          <span class="domtag t-d3">D3</span><span class="daychev">▼</span>
+        </div>
+        <div class="day-b">
+          <div><div class="blk-label">study</div><div class="blk-text">CCA d3.1–d3.2. Hierarchy: user → project → directory. Commands run in-session; skills with <code>context: fork</code> run isolated. <code>.claude/rules/</code> with glob paths.</div></div>
+          <div><div class="blk-label">build</div><div class="blk-text">Configure Claude Code for your LangGraph project: project CLAUDE.md, a path-scoped rule for test files, a forked skill for exploration.</div></div>
+          <div class="ap-tag"><div class="al">D3 TRAPS</div><div class="at">Personal prefs in project config = wrong. Commands for complex exploration = wrong (use skills). Cross-directory conventions → <code>.claude/rules/</code>, not subdir CLAUDE.md.</div></div>
+          <div class="res-links">
+            <a class="res-chip" href="https://claudecertifications.com/claude-certified-architect/domains/claude-code-config" target="_blank" rel="noopener"><span class="ic">🌐</span> CCA: Claude Code Config</a>
+            <a class="res-chip" href="https://alexop.dev/posts/claude-code-customization-guide-claudemd-skills-subagents/" target="_blank" rel="noopener"><span class="ic">📖</span> Customization guide</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="day" data-day="18">
+        <div class="day-h" onclick="td(this)">
+          <span class="daycheck" data-c="18" onclick="ck(event,18)"></span>
+          <span class="daynum">DAY 18</span>
+          <span class="daytitle">Plan mode + CI/CD with <code>-p</code></span>
+          <span class="domtag t-d3">D3</span><span class="daychev">▼</span>
+        </div>
+        <div class="day-b">
+          <div><div class="blk-label">study</div><div class="blk-text">CCA d3.3–d3.4. Plan mode for multi-file/architectural; direct execution for simple. <code>-p</code> + <code>--output-format json</code> for CI. Independent reviewer ≠ generator.</div></div>
+          <div><div class="blk-label">build</div><div class="blk-text">Wire Claude Code into a GitHub Actions step with <code>-p</code> and JSON output for automated PR review.</div></div>
+          <div class="ap-tag"><div class="al">SAMPLE Q10</div><div class="at"><code>-p</code> is the only correct non-interactive flag. <code>CLAUDE_HEADLESS=true</code> and <code>--batch</code> don't exist.</div></div>
+          <div class="res-links">
+            <a class="res-chip" href="https://claudecertifications.com/claude-certified-architect/domains/claude-code-config" target="_blank" rel="noopener"><span class="ic">🌐</span> CCA: Claude Code Config</a>
+            <a class="res-chip" href="https://docs.claude.com/en/docs/agent-sdk/overview" target="_blank" rel="noopener"><span class="ic">📘</span> Agent SDK / CLI</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="day" data-day="19">
+        <div class="day-h" onclick="td(this)">
+          <span class="daycheck" data-c="19" onclick="ck(event,19)"></span>
+          <span class="daynum">DAY 19</span>
+          <span class="daytitle">Scenarios 1 + 2 full drill</span>
+          <span class="domtag t-d1">D1</span><span class="domtag t-d3">D3</span><span class="daychev">▼</span>
+        </div>
+        <div class="day-b">
+          <div><div class="blk-label">drill</div><div class="blk-text">Customer Support (Sample Qs 1–3) + Code Generation (Qs 4–6). Full distractor analysis on each. These two scenarios appear most often.</div></div>
+          <div class="res-links">
+            <a class="res-chip" href="resources/cca-exam-guide.pdf" target="_blank"><span class="ic">📄</span> Exam Guide — sample Qs</a>
+            <a class="res-chip" href="https://claudecertifications.com/claude-certified-architect/practice-questions" target="_blank" rel="noopener"><span class="ic">✏️</span> Practice bank</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="day" data-day="20">
+        <div class="day-h" onclick="td(this)">
+          <span class="daycheck" data-c="20" onclick="ck(event,20)"></span>
+          <span class="daynum">DAY 20–21</span>
+          <span class="daytitle">Scenarios 3–6 + master anti-pattern sheet</span>
+          <span class="domtag t-d1">D1</span><span class="domtag t-d5">D5</span><span class="daychev">▼</span>
+        </div>
+        <div class="day-b">
+          <div><div class="blk-label">day 20 · drill</div><div class="blk-text">Multi-Agent Research (Qs 7–9) + Developer Tools. Error propagation, provenance, parallel execution.</div></div>
+          <div><div class="blk-label">day 21 · drill + synthesize</div><div class="blk-text">CI/CD (Qs 10–12) + Data Extraction. Then compile your one-page anti-pattern cheatsheet (every pattern + its correct alternative).</div></div>
+          <div class="build-tag"><div class="bl">DELIVERABLE</div><div class="bt">Personal anti-pattern cheatsheet covering all 5 domains — your exam-day reference.</div></div>
+          <div class="res-links">
+            <a class="res-chip" href="resources/architects-playbook.pdf" target="_blank"><span class="ic">📘</span> Playbook — reference matrix p26–27</a>
+            <a class="res-chip" href="https://claudecertifications.com/claude-certified-architect/practice-questions" target="_blank" rel="noopener"><span class="ic">✏️</span> Practice bank</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 4 -->
+    <div class="wphase" id="w4">
+      <div class="ph-banner">
+        <h3>Week 4 — Deploy, LLMOps &amp; Exam Sprint</h3>
+        <p>Ship your agent to production, instrument it, then run two full mock exams. Read primers 14–16. By Day 30: a live deployed agent + the exam booked.</p>
+        <div class="ph-meta"><span class="ph-pill">all domains review</span><span class="ph-pill">2× mock exams</span><span class="ph-pill">primers 14–16</span></div>
+      </div>
+
+      <div class="day" data-day="22">
+        <div class="day-h" onclick="td(this)">
+          <span class="daycheck" data-c="22" onclick="ck(event,22)"></span>
+          <span class="daynum">DAY 22–23</span>
+          <span class="daytitle">FastAPI wrap + LangSmith tracing</span>
+          <span class="domtag t-op">OPS</span><span class="daychev">▼</span>
+        </div>
+        <div class="day-b">
+          <div><div class="blk-label">build (day 22)</div><div class="blk-text">Wrap your Week 3 agent behind a FastAPI <code>/chat</code> endpoint with streaming + <code>/health</code>.</div></div>
+          <div><div class="blk-label">build (day 23)</div><div class="blk-text">Instrument with LangSmith: trace 20 runs, identify failure modes, map each to a CCA anti-pattern.</div></div>
+          <div class="ap-tag"><div class="al">OPS → CCA</div><div class="at">Looping → <code>stop_reason</code>. Bad tool pick → tool descriptions. Context overflow → pruning. Traces make the exam concrete.</div></div>
+          <div class="res-links">
+            <a class="res-chip" href="https://www.anthropic.com/engineering" target="_blank" rel="noopener"><span class="ic">📘</span> Anthropic engineering blog</a>
+            <a class="res-chip" href="https://www.youtube.com/watch?v=KtHdbzChVWo" target="_blank" rel="noopener"><span class="ic">📹</span> AI Engineer roadmap</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="day" data-day="24">
+        <div class="day-h" onclick="td(this)">
+          <span class="daycheck" data-c="24" onclick="ck(event,24)"></span>
+          <span class="daynum">DAY 24–25</span>
+          <span class="daytitle">Docker + deploy + domain review</span>
+          <span class="domtag t-op">OPS</span><span class="daychev">▼</span>
+        </div>
+        <div class="day-b">
+          <div><div class="blk-label">build</div><div class="blk-text">Dockerize the FastAPI agent (env vars for keys); deploy to a free tier (Cloud Run / Render / Fly.io); get a live HTTPS URL + 1-page case study with an architecture diagram.</div></div>
+          <div><div class="blk-label">study</div><div class="blk-text">Day 24: D1+D2 anti-pattern review. Day 25: D3+D4+D5. Re-read your weakest task statement in the Exam Guide.</div></div>
+          <div class="res-links">
+            <a class="res-chip" href="resources/cca-exam-guide.pdf" target="_blank"><span class="ic">📄</span> Exam Guide</a>
+            <a class="res-chip" href="resources/architects-playbook.pdf" target="_blank"><span class="ic">📘</span> Playbook</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="day" data-day="26">
+        <div class="day-h" onclick="td(this)">
+          <span class="daycheck" data-c="26" onclick="ck(event,26)"></span>
+          <span class="daynum">DAY 26–27</span>
+          <span class="daytitle">Mock Exam 1 (60 Qs) + gap review</span>
+          <span class="domtag t-d1">ALL</span><span class="daychev">▼</span>
+        </div>
+        <div class="day-b">
+          <div><div class="blk-label">day 26</div><div class="blk-text">Timed 60-question mock, 4 scenarios, weighted 27/18/20/20/15. No notes. Target 43+/60 (~72%). 2 min/question max.</div></div>
+          <div><div class="blk-label">day 27</div><div class="blk-text">Review every miss against its task statement + Playbook slide. Spend all 3 hrs on your weakest domain only.</div></div>
+          <div class="ap-tag"><div class="al">GO / NO-GO</div><div class="at">≥72% → proceed to Mock 2. &lt;72% → re-drill your weakest domain's anti-patterns before Mock 2.</div></div>
+          <div class="res-links">
+            <a class="res-chip" href="https://claudecertifications.com/claude-certified-architect/practice-questions" target="_blank" rel="noopener"><span class="ic">✏️</span> Practice bank</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="day" data-day="28">
+        <div class="day-h" onclick="td(this)">
+          <span class="daycheck" data-c="28" onclick="ck(event,28)"></span>
+          <span class="daynum">DAY 28–29</span>
+          <span class="daytitle">Mock Exam 2 + register for the exam</span>
+          <span class="domtag t-d1">ALL</span><span class="daychev">▼</span>
+        </div>
+        <div class="day-b">
+          <div><div class="blk-label">day 28</div><div class="blk-text">Second 60-question mock, different scenario draw. Target 45+/60 (75%). ≥80% → book it.</div></div>
+          <div><div class="blk-label">day 29</div><div class="blk-text">Register on Skilljar. Read your cheatsheet slowly. 15 rapid-fire questions on your weakest area. No new material.</div></div>
+          <div class="res-links">
+            <a class="res-chip" href="https://anthropic.skilljar.com/claude-certified-architect-foundations-access-request" target="_blank" rel="noopener"><span class="ic">🎓</span> Register for the CCA exam</a>
+            <a class="res-chip" href="https://claudecertifications.com/claude-certified-architect/exam-guide" target="_blank" rel="noopener"><span class="ic">🌐</span> Exam guide (web)</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="day" data-day="30">
+        <div class="day-h" onclick="td(this)">
+          <span class="daycheck" data-c="30" onclick="ck(event,30)"></span>
+          <span class="daynum">DAY 30</span>
+          <span class="daytitle">Exam day — strategy + go</span>
+          <span class="domtag t-d4">GO</span><span class="daychev">▼</span>
+        </div>
+        <div class="day-b">
+          <div><div class="blk-label">morning</div><div class="blk-text">Read the cheatsheet once. Skim Playbook p26–27. Eat well. No cramming.</div></div>
+          <div><div class="blk-label">during the exam</div><div class="blk-text">Name the domain/task statement first. Eliminate any answer using sentiment, self-confidence, vague instructions, aggregate-only metrics, or same-session self-review. Answer every question (no guessing penalty).</div></div>
+          <div class="ap-tag"><div class="al">THE ONE HEURISTIC</div><div class="at"><b>Explicit, programmatic, and scoped beats implicit, probabilistic, and broad — every time.</b></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESOURCE LIBRARY -->
+  <section id="resources"><span class="anchor"></span>
+    <div class="sec-head">
+      <div class="sec-tag">// 03 · resource library</div>
+      <h2 class="sec-title">Every resource, in one place</h2>
+      <p class="sec-sub">All free except where noted. Your two uploaded PDFs are bundled into this site (the <code>resources/</code> folder), so they travel with your deployment.</p>
+    </div>
+
+    <div class="rescat">
+      <h4>Your PDFs (bundled)</h4>
+      <div class="resgrid">
+        <a class="rescard" href="resources/cca-exam-guide.pdf" target="_blank">
+          <span class="ric">📄</span><span class="rcc"><div class="rt">CCA Foundations Exam Guide</div><div class="rd">Official domains, task statements, 6 scenarios, 12 sample questions. Your single most important document.</div></span>
+        </a>
+        <a class="rescard" href="resources/architects-playbook.pdf" target="_blank">
+          <span class="ric">📘</span><span class="rcc"><div class="rt">The Architect's Playbook</div><div class="rd">27 visual slides of production patterns &amp; anti-patterns. Pages map directly to task statements.</div></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="rescat">
+      <h4>CCA-specific (claudecertifications.com)<span class="free-badge">FREE</span></h4>
+      <div class="resgrid">
+        <a class="rescard" href="https://claudecertifications.com/claude-certified-architect/exam-guide" target="_blank" rel="noopener"><span class="ric">🌐</span><span class="rcc"><div class="rt">Exam Guide (web)</div><div class="rd">Web version of the official guide.</div></span></a>
+        <a class="rescard" href="https://claudecertifications.com/claude-certified-architect/practice-questions" target="_blank" rel="noopener"><span class="ric">✏️</span><span class="rcc"><div class="rt">Practice Questions</div><div class="rd">Free question bank in exam format.</div></span></a>
+        <a class="rescard" href="https://claudecertifications.com/claude-certified-architect/domains/agentic-architecture" target="_blank" rel="noopener"><span class="ric">🟦</span><span class="rcc"><div class="rt">D1 · Agentic Architecture</div><div class="rd">Loops, hub-and-spoke, hooks, sessions.</div></span></a>
+        <a class="rescard" href="https://claudecertifications.com/claude-certified-architect/domains/tool-design-mcp" target="_blank" rel="noopener"><span class="ric">🟧</span><span class="rcc"><div class="rt">D2 · Tool Design &amp; MCP</div><div class="rd">Descriptions, errors, distribution, config.</div></span></a>
+        <a class="rescard" href="https://claudecertifications.com/claude-certified-architect/domains/claude-code-config" target="_blank" rel="noopener"><span class="ric">🟪</span><span class="rcc"><div class="rt">D3 · Claude Code Config</div><div class="rd">CLAUDE.md, skills, plan mode, CI/CD.</div></span></a>
+        <a class="rescard" href="https://claudecertifications.com/claude-certified-architect/domains/prompt-engineering" target="_blank" rel="noopener"><span class="ric">🟩</span><span class="rcc"><div class="rt">D4 · Prompt Engineering</div><div class="rd">Criteria, few-shot, tool_use, retry loops.</div></span></a>
+        <a class="rescard" href="https://claudecertifications.com/claude-certified-architect/domains/context-management" target="_blank" rel="noopener"><span class="ric">🟥</span><span class="rcc"><div class="rt">D5 · Context &amp; Reliability</div><div class="rd">Case facts, escalation, calibration.</div></span></a>
+        <a class="rescard" href="https://anthropic.skilljar.com/claude-certified-architect-foundations-access-request" target="_blank" rel="noopener"><span class="ric">🎓</span><span class="rcc"><div class="rt">Register for the Exam</div><div class="rd">Anthropic Skilljar access request.</div></span></a>
+      </div>
+    </div>
+
+    <div class="rescat">
+      <h4>Anthropic official docs<span class="free-badge">FREE</span></h4>
+      <div class="resgrid">
+        <a class="rescard" href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview" target="_blank" rel="noopener"><span class="ric">📘</span><span class="rcc"><div class="rt">Prompt Engineering Overview</div><div class="rd">The foundational guide. D4.</div></span></a>
+        <a class="rescard" href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices" target="_blank" rel="noopener"><span class="ric">📘</span><span class="rcc"><div class="rt">Prompting Best Practices</div><div class="rd">Output control, tool use, agentic systems.</div></span></a>
+        <a class="rescard" href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener"><span class="ric">📘</span><span class="rcc"><div class="rt">Building Effective Agents</div><div class="rd">Must-read for D1. Patterns &amp; when to use them.</div></span></a>
+        <a class="rescard" href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank" rel="noopener"><span class="ric">📘</span><span class="rcc"><div class="rt">Effective Context Engineering</div><div class="rd">Core to D5. Token budgets, memory.</div></span></a>
+        <a class="rescard" href="https://docs.claude.com/en/docs/agent-sdk/overview" target="_blank" rel="noopener"><span class="ric">📘</span><span class="rcc"><div class="rt">Agent SDK Overview</div><div class="rd">The runtime behind Claude Code. D1/D3.</div></span></a>
+        <a class="rescard" href="https://docs.claude.com/en/docs/agent-sdk/subagents" target="_blank" rel="noopener"><span class="ric">📘</span><span class="rcc"><div class="rt">Agent SDK: Subagents</div><div class="rd">Isolated context, the Task tool.</div></span></a>
+        <a class="rescard" href="https://platform.claude.com/docs/en/agent-sdk/hooks" target="_blank" rel="noopener"><span class="ric">📘</span><span class="rcc"><div class="rt">Agent SDK: Hooks</div><div class="rd">PreToolUse / PostToolUse. Deterministic guardrails.</div></span></a>
+        <a class="rescard" href="https://www.anthropic.com/news/model-context-protocol" target="_blank" rel="noopener"><span class="ric">📘</span><span class="rcc"><div class="rt">Introducing MCP</div><div class="rd">The original announcement. D2.</div></span></a>
+      </div>
+    </div>
+
+    <div class="rescat">
+      <h4>Free courses &amp; interactive<span class="free-badge">FREE</span></h4>
+      <div class="resgrid">
+        <a class="rescard" href="https://anthropic.skilljar.com/introduction-to-model-context-protocol" target="_blank" rel="noopener"><span class="ric">🎓</span><span class="rcc"><div class="rt">Anthropic MCP Course</div><div class="rd">Official free course on Skilljar. Tools/resources/prompts.</div></span></a>
+        <a class="rescard" href="https://github.com/anthropics/prompt-eng-interactive-tutorial" target="_blank" rel="noopener"><span class="ric">⚡</span><span class="rcc"><div class="rt">Prompt Eng Interactive Tutorial</div><div class="rd">Anthropic's hands-on GitHub tutorial.</div></span></a>
+        <a class="rescard" href="https://modelcontextprotocol.io" target="_blank" rel="noopener"><span class="ric">🌐</span><span class="rcc"><div class="rt">modelcontextprotocol.io</div><div class="rd">Official MCP spec, SDKs, quickstarts.</div></span></a>
+        <a class="rescard" href="https://alexop.dev/posts/claude-code-customization-guide-claudemd-skills-subagents/" target="_blank" rel="noopener"><span class="ric">📖</span><span class="rcc"><div class="rt">Claude Code Full-Stack Guide</div><div class="rd">CLAUDE.md, skills, subagents, hooks compared.</div></span></a>
+      </div>
+    </div>
+
+    <div class="rescat">
+      <h4>AI foundations — zero-to-LLM (start here if you're new)<span class="free-badge">FREE</span></h4>
+      <div class="resgrid">
+        <a class="rescard" href="https://github.com/microsoft/generative-ai-for-beginners" target="_blank" rel="noopener"><span class="ric">🌱</span><span class="rcc"><div class="rt">Generative AI for Beginners — Microsoft</div><div class="rd">21 short lessons from absolute zero: what an LLM is, prompting, embeddings, RAG, agents. The single best starting point if any term here is new.</div></span></a>
+        <a class="rescard" href="https://huggingface.co/learn/llm-course/chapter1/1" target="_blank" rel="noopener"><span class="ric">🤗</span><span class="rcc"><div class="rt">LLM Course — Hugging Face</div><div class="rd">How models actually read text: tokens, the Transformer, embeddings. Free and hands-on. Chapters 1–2 cover the foundations.</div></span></a>
+        <a class="rescard" href="https://www.promptingguide.ai" target="_blank" rel="noopener"><span class="ric">✍️</span><span class="rcc"><div class="rt">Prompt Engineering Guide — DAIR.AI</div><div class="rd">The most complete free prompting reference. Reinforces Domain 4: few-shot, chain-of-thought, structured output.</div></span></a>
+        <a class="rescard" href="https://fullstackdeeplearning.com/llm-bootcamp/" target="_blank" rel="noopener"><span class="ric">🎬</span><span class="rcc"><div class="rt">Full Stack LLM Bootcamp</div><div class="rd">Free video lectures on building &amp; shipping LLM apps: prompting, RAG ("augmented LLMs"), LLMOps, launch-in-an-hour. Pairs with Week 4.</div></span></a>
+        <a class="rescard" href="https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ" target="_blank" rel="noopener"><span class="ric">📹</span><span class="rcc"><div class="rt">Neural Networks: Zero to Hero — Karpathy</div><div class="rd">Optional deep dive: build a tiny GPT from scratch to truly understand how LLMs work. The "why" behind the "what."</div></span></a>
+        <a class="rescard" href="https://github.com/SkalskiP/courses" target="_blank" rel="noopener"><span class="ric">🗂️</span><span class="rcc"><div class="rt">SkalskiP/courses — curated index</div><div class="rd">The community-maintained course list these picks came from. Browse for deeper ML/DL courses if you want more later.</div></span></a>
+      </div>
+    </div>
+
+    <div class="rescat">
+      <h4>Beginner AI concepts (RAG, vectors, embeddings)<span class="free-badge">FREE</span></h4>
+      <div class="resgrid">
+        <a class="rescard" href="https://freeacademy.ai/blog/what-is-rag-retrieval-augmented-generation" target="_blank" rel="noopener"><span class="ric">📖</span><span class="rcc"><div class="rt">What is RAG? Beginner Guide</div><div class="rd">Clearest plain-English intro. Primer 07.</div></span></a>
+        <a class="rescard" href="https://learnopencv.com/vector-db-and-rag-pipeline-for-document-rag/" target="_blank" rel="noopener"><span class="ric">📖</span><span class="rcc"><div class="rt">Vector DB + RAG Pipeline</div><div class="rd">How retrieval works end-to-end. Primers 05–07.</div></span></a>
+        <a class="rescard" href="https://medium.com/@sharanharsoor/the-complete-guide-to-embeddings-and-rag-from-theory-to-production-758a16d747ac" target="_blank" rel="noopener"><span class="ric">📖</span><span class="rcc"><div class="rt">Embeddings &amp; RAG, Theory→Prod</div><div class="rd">Deeper dive once the basics click.</div></span></a>
+        <a class="rescard" href="https://www.singlestore.com/blog/a-guide-to-retrieval-augmented-generation-rag/" target="_blank" rel="noopener"><span class="ric">📖</span><span class="rcc"><div class="rt">RAG in Context</div><div class="rd">RAG vs fine-tuning framing. Primer 16.</div></span></a>
+      </div>
+    </div>
+
+    <div class="rescat">
+      <h4>Videos<span class="free-badge">FREE</span></h4>
+      <div class="resgrid">
+        <a class="rescard" href="https://www.youtube.com/watch?v=KtHdbzChVWo" target="_blank" rel="noopener"><span class="ric">📹</span><span class="rcc"><div class="rt">6-Month AI Engineer Roadmap</div><div class="rd">Aishwarya Srinivasan (ex-Google/MSFT). Big-picture map.</div></span></a>
+        <a class="rescard" href="https://www.youtube.com/watch?v=zVBJ-40hZGw" target="_blank" rel="noopener"><span class="ric">📹</span><span class="rcc"><div class="rt">Architecting AI Agents</div><div class="rd">Systems-first agent design. Great for D1.</div></span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERVIEW -->
+  <section id="interview"><span class="anchor"></span>
+    <div class="sec-head">
+      <div class="sec-tag">// 04 · interview-ready talking points</div>
+      <h2 class="sec-title">Talk about any of this confidently</h2>
+      <p class="sec-sub">Short, sharp answers to the questions you'll actually get asked. Each one doubles as a CCA concept check.</p>
+    </div>
+    <div class="iv-grid">
+      <div class="iv-card"><div class="iv-q">"What's the difference between RAG and fine-tuning?"</div><div class="iv-a"><b>RAG</b> injects relevant facts at <b>query time</b> — cheap, updatable, great for proprietary/current knowledge. <b>Fine-tuning</b> bakes behavior into the <b>weights</b> — expensive, static, for consistent style at scale. Start with prompting, add RAG, fine-tune last.</div></div>
+      <div class="iv-card"><div class="iv-q">"How do you make an agent reliable in production?"</div><div class="iv-a">Enforce critical rules with <b>hooks/programmatic gates</b>, not prompts (prompts have a non-zero failure rate). Return <b>structured errors</b> so the agent can recover. Trace everything (LLMOps). Use an <b>independent reviewer</b> instance, never same-session self-review.</div></div>
+      <div class="iv-card"><div class="iv-q">"When would you use a multi-agent system?"</div><div class="iv-a">When the task is too big for one context window or needs specialization. A <b>coordinator</b> delegates to subagents with <b>isolated context</b> and small tool sets. Watch for the failure mode: <b>too-narrow decomposition</b> leaving topics uncovered.</div></div>
+      <div class="iv-card"><div class="iv-q">"What is MCP and why does it matter?"</div><div class="iv-a">An open standard — "USB-C for AI" — to connect models to tools/data. Build a <b>server</b> once; any <b>client</b> can use it. It replaces fragmented per-app integrations with one protocol. Three primitives: tools, resources, prompts.</div></div>
+      <div class="iv-card"><div class="iv-q">"How do you get reliable structured output?"</div><div class="iv-a">Define a tool with a <b>JSON schema</b> and force it with <code>tool_choice</code>. That guarantees <b>structure</b> — but not <b>semantics</b>, so I add a validation step (e.g., totals must reconcile) and use <b>nullable fields</b> to stop the model fabricating missing data.</div></div>
+      <div class="iv-card"><div class="iv-q">"How do you manage long conversations?"</div><div class="iv-a">Pin critical facts in an immutable <b>"case facts" block</b> at the top (high-recall position), <b>prune</b> verbose tool outputs to needed fields, summarize resolved history but keep the active issue verbatim, and use <b>scratchpad files</b> to survive context limits.</div></div>
+    </div>
+  </section>
+
+  <!-- DEPLOY -->
+  <section id="deploy"><span class="anchor"></span>
+    <div class="sec-head">
+      <div class="sec-tag">// 05 · deploy to vercel</div>
+      <h2 class="sec-title">Put this hub online in ~3 minutes</h2>
+      <p class="sec-sub">This is a static site — no build step. Pick the easiest path. The whole folder (this <code>index.html</code> + the <code>resources/</code> PDFs + <code>vercel.json</code>) deploys as-is.</p>
+    </div>
+
+    <div class="ph-banner" style="margin-bottom:18px">
+      <h3>Option A — Drag &amp; drop (no account setup, fastest)</h3>
+      <div class="deploy-steps">
+        <div class="dstep"><div class="dn"></div><div class="dc"><h4>Unzip the project</h4><p>Download the bundle I gave you and unzip it. You'll see <code>index.html</code>, a <code>resources/</code> folder, <code>vercel.json</code>, and <code>README.md</code>.</p></div></div>
+        <div class="dstep"><div class="dn"></div><div class="dc"><h4>Go to Vercel</h4><p>Open <a href="https://vercel.com/new" target="_blank" rel="noopener">vercel.com/new</a> and sign in (free — use your GitHub or email).</p></div></div>
+        <div class="dstep"><div class="dn"></div><div class="dc"><h4>Drag the folder in</h4><p>On the import screen, drag your unzipped <b>folder</b> onto the upload area. Vercel auto-detects a static site. Click <b>Deploy</b>. You'll get a live <code>https://your-name.vercel.app</code> URL.</p></div></div>
+      </div>
+    </div>
+
+    <div class="ph-banner" style="margin-bottom:18px">
+      <h3>Option B — GitHub (best for editing later)</h3>
+      <div class="deploy-steps">
+        <div class="dstep"><div class="dn"></div><div class="dc"><h4>Create a repo &amp; push</h4>
+          <pre class="code"><span class="cm"># inside the unzipped folder</span>
+git init
+git add .
+git commit -m "CCA speedrun study hub"
+git branch -M main
+git remote add origin https://github.com/&lt;you&gt;/cca-speedrun.git
+git push -u origin main</pre></div></div>
+        <div class="dstep"><div class="dn"></div><div class="dc"><h4>Import to Vercel</h4><p>At <a href="https://vercel.com/new" target="_blank" rel="noopener">vercel.com/new</a>, pick <b>Import Git Repository</b>, select your repo, framework preset <b>Other</b>, leave build settings empty, and <b>Deploy</b>. Every future <code>git push</code> auto-redeploys.</p></div></div>
+      </div>
+    </div>
+
+    <div class="ph-banner">
+      <h3>Option C — Vercel CLI (one command)</h3>
+      <div class="deploy-steps">
+        <div class="dstep"><div class="dn"></div><div class="dc"><h4>Install &amp; deploy</h4>
+          <pre class="code">npm i -g vercel
+cd cca-speedrun        <span class="cm"># your unzipped folder</span>
+vercel                 <span class="cm"># follow prompts → preview URL</span>
+vercel --prod          <span class="cm"># promote to production</span></pre></div></div>
+      </div>
+    </div>
+
+    <div class="primer-intro" style="margin-top:18px">
+      <b>Note on the bundled PDFs:</b> the Architect's Playbook is ~14&nbsp;MB, which is fine for Vercel. If you'd rather keep the deploy tiny, delete the <code>resources/</code> folder before deploying and just keep the PDFs locally — the rest of the site works unchanged (those two links will simply 404).
+    </div>
+  </section>
+
+  <footer>
+    <p>CCA SPEEDRUN · built for Murali · 30-day Claude Certified Architect study hub<br>
+    Sources: CCA Exam Guide &amp; Architect's Playbook (Anthropic) · claudecertifications.com · docs.anthropic.com · modelcontextprotocol.io · foundation courses via <a href="https://github.com/SkalskiP/courses" target="_blank" rel="noopener">SkalskiP/courses</a> (Microsoft · Hugging Face · DAIR.AI · Full Stack Deep Learning · Karpathy) · free community guides &amp; videos<br>
+    Not affiliated with Anthropic. Verify exam details on the official Skilljar page before registering.</p>
+  </footer>
+</div>
+
+<script>
+  // ---- accordions ----
+  function tp(id){document.getElementById(id).classList.toggle('open')}
+  function td(el){el.closest('.day').classList.toggle('open')}
+  // ---- week tabs ----
+  function sw(id,el){
+    document.querySelectorAll('.wphase').forEach(p=>p.classList.remove('active'));
+    document.querySelectorAll('.wtab').forEach(t=>t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    el.classList.add('active');
+  }
+  // ---- progress (localStorage) ----
+  var TOTAL=document.querySelectorAll('.daycheck').length, KEY='cca_progress_v1';
+  function loadDone(){
+    try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return {}}
+  }
+  function saveDone(d){
+    try{localStorage.setItem(KEY,JSON.stringify(d))}catch(e){}
+  }
+  function paint(){
+    var d=loadDone(), n=Object.keys(d).filter(function(k){return d[k]}).length;
+    document.querySelectorAll('.daycheck').forEach(function(c){
+      var id=c.getAttribute('data-c');
+      if(d[id]){c.classList.add('done')}else{c.classList.remove('done')}
+    });
+    document.getElementById('pcount').textContent=n+'/'+TOTAL;
+    document.getElementById('pfill').style.width=(n/TOTAL*100)+'%';
+  }
+  function ck(ev,id){
+    ev.stopPropagation();
+    var d=loadDone(); d[id]=!d[id]; saveDone(d); paint();
+  }
+  function resetProgress(){
+    if(confirm('Reset all day progress?')){saveDone({});paint()}
+  }
+  paint();
+</script>
+</body>
+</html>

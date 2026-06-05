@@ -1,0 +1,7 @@
+# Anthropic Confidential / Need-to-Know (NTK) materials — never publish.
+# These PDFs stay local; the live site's two "your PDF" links will 404 by design.
+resources/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
